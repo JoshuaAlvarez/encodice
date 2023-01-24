@@ -49,7 +49,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ communityData }) => {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  // get community data and pass it to client
+  // Get community data and pass it to client
   try {
     const communityDocRef = doc(
       firestore,
