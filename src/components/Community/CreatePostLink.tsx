@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { BsLink45Deg } from "react-icons/bs";
-import { FaReddit } from "react-icons/fa";
+import { FaLandmark } from "react-icons/fa";
 import { IoImageOutline } from "react-icons/io5";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../atoms/authModalAtom";
@@ -24,7 +24,7 @@ const CreatePostLink: React.FC = () => {
     const { communityId } = router.query;
 
     if (communityId) {
-      router.push(`/r/${communityId}/submit`);
+      router.push(`/tema/${communityId}/submit`);
       return;
     }
 
@@ -44,7 +44,7 @@ const CreatePostLink: React.FC = () => {
       p={2}
       mb={4}
     >
-      <Icon as={FaReddit} fontSize={36} color="gray.300" mr={4} />
+      <Icon as={FaLandmark} fontSize={36} color="gray.300" mr={4} />
       <Input
         placeholder="Crear una publicación"
         fontSize="10pt"

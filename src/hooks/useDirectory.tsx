@@ -1,7 +1,7 @@
 import { useFocusEffect } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { FaReddit } from "react-icons/fa";
+import { FaLandmark } from "react-icons/fa";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { communityState } from "../atoms/communitiesAtom";
 import {
@@ -40,10 +40,10 @@ const useDirectory = () => {
       setDirectoryState((prev) => ({
         ...prev,
         selectedMenuItem: {
-          displayText: `r/${currentCommunity.id}`,
-          link: `/r/${currentCommunity.id}`,
+          displayText: `tema/${currentCommunity.id}`,
+          link: `/tema/${currentCommunity.id}`,
           imageURL: currentCommunity.imageURL,
-          icon: FaReddit,
+          icon: FaLandmark,
           iconColor: "blue.500",
         },
       }));

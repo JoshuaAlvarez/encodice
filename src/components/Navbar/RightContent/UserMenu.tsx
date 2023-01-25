@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { signOut, User } from "firebase/auth";
 import React from "react";
-import { FaRedditSquare } from "react-icons/fa";
+import { FaLandmarkSquare } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { IoSparkles } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
@@ -50,7 +50,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
                   fontSize={24}
                   mr={1}
                   color="gray.300"
-                  as={FaRedditSquare}
+                  as={FaLandmarkSquare}
                 />
                 <Flex
                   direction={"column"}

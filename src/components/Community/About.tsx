@@ -16,7 +16,7 @@ import React, { useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
 import { RiCakeLine } from "react-icons/ri";
-import { FaReddit } from "react-icons/fa";
+import { FaLandmark } from "react-icons/fa";
 import { Community, communityState } from "../../atoms/communitiesAtom";
 import { auth, firestore, storage } from "../../firebase/clientApp";
 import useSelectFile from "../../hooks/useSelectFile";
@@ -100,19 +100,19 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
             fontWeight={500}
             fontSize="10pt"
           >
-            <Icon as={RiCakeLine} fontSize={18} mr={2} />
+          {/*  <Icon as={RiCakeLine} fontSize={18} mr={2} />*/}
             {communityData.createdAt && (
               <Text>
-                Creado{" "}
+                Creado el{" "}
                 {moment(
                   new Date(communityData.createdAt.seconds * 1000)
-                ).format("MMM DD, YYYY")}
+                ).format("MM / DD / YYYY")}
               </Text>
             )}
           </Flex>
-          <Link href={`/r/${communityData.id}/submit`}>
+          <Link href={`/tema/${communityData.id}/submit`}>
             <Button mt={3} height="30px">
-              Crear Publicación
+              Crear una publicación
             </Button>
           </Link>
           {user?.uid === communityData.creatorId && (
@@ -138,7 +138,7 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
                     />
                   ) : (
                     <Icon
-                      as={FaReddit}
+                      as={FaLandmark}
                       fontSize={40}
                       color="brand.100"
                       mr={2}

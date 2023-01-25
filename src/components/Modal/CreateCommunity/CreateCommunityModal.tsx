@@ -60,7 +60,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
                 // Check if community exists in db
             const communityDoc = await transaction.get(communityDocRef);
             if (communityDoc.exists()) {
-                throw new Error(`El nombre r/${communityName} no está disponible. Intenta con otro.`);
+                throw new Error(`El nombre ${communityName} no está disponible. Intenta con otro.`);
             }
 
             // Create community
@@ -101,7 +101,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
                         fontSize={15}
                         padding={3} /*Renombrar "comunidad" a "tema" */
                     >
-                        Crea una comunidad
+                        Crea un tema
                     </ModalHeader>
                     <Box pl={3} pr={3}>
                         <Divider />
@@ -110,18 +110,18 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
                             <Text fontWeight={600} fontSize={15}>
                                 Nombre
                             </Text>
-                            <Text fontSize={11} color="gray.500">
-                                Community names including capitalization cannot be changed
-                            </Text>
-                            <Text
-                                position="relative"
-                                top="28px"
-                                left="10px"
-                                width="20px"
-                                color="gray.400"
-                            >
-                                r/
-                            </Text>
+                            {/*<Text fontSize={11} color="gray.500">*/}
+                            {/*    Community names including capitalization cannot be changed*/}
+                            {/*</Text>*/}
+                            {/*<Text*/}
+                            {/*    position="relative"*/}
+                            {/*    top="28px"*/}
+                            {/*    left="10px"*/}
+                            {/*    width="20px"*/}
+                            {/*    color="gray.400"*/}
+                            {/*>*/}
+                            {/*    tema/*/}
+                            {/*</Text>*/}
                             <Input
                                 position="relative"
                                 value={communityName}
@@ -135,59 +135,59 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
                             <Text fontSize="9pt" color="red" pt={1}>
                                 {error}
                             </Text>
-                            <Box mt={4} mb={4}>
-                                <Text fontWeight={600} fontSize={15}>
-                                    Tipo de comunidad
-                                </Text>
-                                {/* checkbox */}
-                                <Stack spacing={2}>
-                                    <Checkbox
-                                        name='public'
-                                        isChecked={communityType === 'public'}
-                                        onChange={onCommunityTypeChange}
-                                    >
-                                        <Flex align={"center"}>
-                                            <Icon as={BsFillPersonFill} color="gray.500" mr={2} />
-                                            <Text fontSize="10pt" mr={1}>
-                                                Pública
-                                            </Text>
-                                            <Text fontSize="8pt" color="gray.500" pt={1}>
-                                                Cualquiera puede ver, publicar y comentar en esta comunidad.
-                                            </Text>
-                                        </Flex>
-                                    </Checkbox>
-                                    <Checkbox
-                                        name='restricted'
-                                        isChecked={communityType === 'restricted'}
-                                        onChange={onCommunityTypeChange}
-                                    >
-                                        <Flex align={"center"}>
-                                            <Icon as={BsFillEyeFill} color="gray.500" mr={2} />
-                                            <Text fontSize="10pt" mr={1}>
-                                                Restringida
-                                            </Text>
-                                            <Text fontSize="8pt" color="gray.500" pt={1}>
-                                                Cualquiera puede ver esta comunidad pero solo usuarios aprobados pueden publicar.
-                                            </Text>
-                                        </Flex>
-                                    </Checkbox>
-                                    <Checkbox
-                                        name='private'
-                                        isChecked={communityType === 'private'}
-                                        onChange={onCommunityTypeChange}
-                                    >
-                                        <Flex align={"center"}>
-                                            <Icon as={HiLockClosed} color="gray.500" mr={2} />
-                                            <Text fontSize="10pt" mr={1}>
-                                                Privada
-                                            </Text>
-                                            <Text fontSize="8pt" color="gray.500" pt={1}>
-                                                Solo usuarios aprobados pueden ver y publicar en esta comunidad.
-                                            </Text>
-                                        </Flex>
-                                    </Checkbox>
-                                </Stack>
-                            </Box>
+                            {/*<Box mt={4} mb={4}>*/}
+                            {/*    <Text fontWeight={600} fontSize={15}>*/}
+                            {/*        Tipo de comunidad*/}
+                            {/*    </Text>*/}
+                            {/*     checkbox */}
+                            {/*    <Stack spacing={2}>*/}
+                            {/*        <Checkbox*/}
+                            {/*            name='public'*/}
+                            {/*            isChecked={communityType === 'public'}*/}
+                            {/*            onChange={onCommunityTypeChange}*/}
+                            {/*        >*/}
+                            {/*            <Flex align={"center"}>*/}
+                            {/*                <Icon as={BsFillPersonFill} color="gray.500" mr={2} />*/}
+                            {/*                <Text fontSize="10pt" mr={1}>*/}
+                            {/*                    Pública*/}
+                            {/*                </Text>*/}
+                            {/*                <Text fontSize="8pt" color="gray.500" pt={1}>*/}
+                            {/*                    Cualquiera puede ver, publicar y comentar en esta comunidad.*/}
+                            {/*                </Text>*/}
+                            {/*            </Flex>*/}
+                            {/*        </Checkbox>*/}
+                            {/*        <Checkbox*/}
+                            {/*            name='restricted'*/}
+                            {/*            isChecked={communityType === 'restricted'}*/}
+                            {/*            onChange={onCommunityTypeChange}*/}
+                            {/*        >*/}
+                            {/*            <Flex align={"center"}>*/}
+                            {/*                <Icon as={BsFillEyeFill} color="gray.500" mr={2} />*/}
+                            {/*                <Text fontSize="10pt" mr={1}>*/}
+                            {/*                    Restringida*/}
+                            {/*                </Text>*/}
+                            {/*                <Text fontSize="8pt" color="gray.500" pt={1}>*/}
+                            {/*                    Cualquiera puede ver este tema pero solo usuarios aprobados pueden publicar.*/}
+                            {/*                </Text>*/}
+                            {/*            </Flex>*/}
+                            {/*        </Checkbox>*/}
+                            {/*        <Checkbox*/}
+                            {/*            name='private'*/}
+                            {/*            isChecked={communityType === 'private'}*/}
+                            {/*            onChange={onCommunityTypeChange}*/}
+                            {/*        >*/}
+                            {/*            <Flex align={"center"}>*/}
+                            {/*                <Icon as={HiLockClosed} color="gray.500" mr={2} />*/}
+                            {/*                <Text fontSize="10pt" mr={1}>*/}
+                            {/*                    Privada*/}
+                            {/*                </Text>*/}
+                            {/*                <Text fontSize="8pt" color="gray.500" pt={1}>*/}
+                            {/*                    Solo usuarios aprobados pueden ver y publicar en esta comunidad.*/}
+                            {/*                </Text>*/}
+                            {/*            </Flex>*/}
+                            {/*        </Checkbox>*/}
+                            {/*    </Stack>*/}
+                            {/*</Box>*/}
                         </ModalBody>
                     </Box>
 
@@ -205,7 +205,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
                             onClick={handleCreateCommunity}
                             isLoading={loading}
                         >
-                            Crear comunidad
+                            Crear tema
                         </Button>
                     </ModalFooter>
                 </ModalContent>

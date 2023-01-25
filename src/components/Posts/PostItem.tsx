@@ -14,7 +14,7 @@ import moment from "moment";
 import { NextRouter, useRouter } from "next/router";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsChat, BsDot } from "react-icons/bs";
-import { FaReddit } from "react-icons/fa";
+import { FaLandmark } from "react-icons/fa";
 import { Post, postState } from "../../atoms/postsAtom";
 import {
   IoArrowDownCircleOutline,
@@ -69,7 +69,7 @@ const PostItem: React.FC<PostItemProps> = ({
 
       console.log("Post was successfully deleted");
       if (singlePostPage) {
-        router.push(`/r/${post.communityId}`);
+        router.push(`/tema/${post.communityId}`);
       }
     } catch (error: any) {
       setError(error.message);

@@ -2,6 +2,7 @@
 import '@fontsource/open-sans/300.css';
 import '@fontsource/open-sans/400.css';
 import '@fontsource/open-sans/700.css';
+import "@fontsource/nunito-sans";
 import { extendTheme } from "@chakra-ui/react"
 import { Button } from './button';
 
@@ -9,16 +10,16 @@ import { Button } from './button';
 export const theme = extendTheme({
   colors: {
     brand: {
-      100: "#FF3c00", //Reddit's orange
+      100: "#F2740D", //Naranja de StackOverflow
     },
   },
   fonts: {
-    body: "Open Sans, sans-serif", //Close to reddit's font
+    body: "Nunito Sans, sans-serif", //https://www.npmjs.com/package/@fontsource/nunito-sans
   },
   styles: {
     global: () => ({
         body: {
-            bg: "gray.200",
+            bg: "#F8F9F9",
         },
     }),
   },

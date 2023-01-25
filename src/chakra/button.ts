@@ -2,41 +2,41 @@ import { ComponentStyleConfig } from '@chakra-ui/theme';
 
 export const Button: ComponentStyleConfig = {
     baseStyle: {
-        borderRadius: "60px",
-        fontSize: "10pt",
-        fontWeight: 700,
+        borderRadius: "5px",
+        fontSize: "11pt",
+        fontWeight: 800,
         _focus: {
             boxShadow: "none",
         },
     },
     sizes: {
         sm: {
-            fontSize: "8pt",
+            fontSize: "9pt",
         },
         md: {
-            fontSize: "10pt",
+            fontSize: "11pt",
             // height: "28px",
         },
     },
     variants: {
         solid: {
             color: "white",
-            bg: "blue.500",
+            bg: "#0A95FF",
             _hover: {
-                bg: "blue.400",
+                bg: "#071487",
             },
         },
         outline: {
-            color: "blue.500",
-            border: "1px solid",
-            borderColor: "blue.500",
+            color: "#071487",
+            border: "2px solid",
+            borderColor: "#0A95FF",
         },
         oauth: {
-            height: "34px",
-            border: "1px solid",
-            borderColor: "gray.300",
+            height: "35px",
+            border: "2px solid",
+            borderColor: "gray.400",
             _hover: {
-                bg: "gray.50",
+                bg: "gray.60",
             },
         },
     },
