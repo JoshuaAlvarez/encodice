@@ -39,7 +39,7 @@ const Comments: React.FC<CommentsProps> = ({
 }) => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState<Comment[]>([]);
-  const [fetchLoading, setFetchLoading] = useState(false);
+  const [fetchLoading, setFetchLoading] = useState(true);
   const [createLoading, setCreateLoading] = useState(false);
   const [loadingDeleteId, setLoadingDeleteId] = useState("");
   const setPostState = useSetRecoilState(postState);
@@ -140,6 +140,7 @@ const Comments: React.FC<CommentsProps> = ({
     } catch (error) {
       console.log("getPostComments error", error);
     }
+    setFetchLoading(false);
   };
 
   useEffect(() => {
