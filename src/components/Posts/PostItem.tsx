@@ -5,6 +5,7 @@ import {
   Flex,
   Icon,
   Image,
+  Link,
   Skeleton,
   Spinner,
   Stack,
@@ -38,6 +39,7 @@ type PostItemProps = {
   ) => void;
   onDeletePost: (post: Post) => Promise<boolean>;
   onSelectPost?: (post: Post) => void;
+  homePage?: boolean;
 };
 
 const PostItem: React.FC<PostItemProps> = ({
@@ -47,6 +49,7 @@ const PostItem: React.FC<PostItemProps> = ({
   onVote,
   onDeletePost,
   onSelectPost,
+  homePage,
 }) => {
   const [loadingImage, setLoadingImage] = useState(true);
   const [loadingDelete, setLoadingDelete] = useState(false);
@@ -132,6 +135,26 @@ const PostItem: React.FC<PostItemProps> = ({
             fontSize={"9pt"}
           >
             {/* Home Page Check */}
+            {homePage && (
+              <>
+                {post.communityImageURL ? (
+                  <Image
+                    src={post.communityImageURL}
+                    borderRadius="full"
+                    boxSize={10}
+                    mr={2}
+                  />
+                ) : (
+                  <Icon
+                    as={FaLandmark}
+                    fontSize="18pt"
+                    mr={1}
+                    color="blue.600"
+                  />
+                )}
+                <Link></Link>
+              </>
+            )}
             <Text>
               Posted by u/{post.creatorDisplayName}{" "}
               {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}

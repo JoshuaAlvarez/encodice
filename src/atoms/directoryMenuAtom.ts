@@ -1,6 +1,6 @@
-import { IconType } from "react-icons";
-import {TiWorldOutline} from "react-icons/ti";
-import { atom } from "recoil";
+import {IconType} from "react-icons";
+import {GiBookshelf} from "react-icons/gi";
+import {atom} from "recoil";
 
 export type DirectoryMenuItem = {
     displayText: string;
@@ -16,9 +16,9 @@ interface DirectoryMenuState {
 }
 
 export const defaultMenuItem: DirectoryMenuItem = {
-    displayText: 'Main',
+    displayText: 'Lista de Temas',
     link: '/',
-    icon: TiWorldOutline,
+    icon: GiBookshelf,
     iconColor: 'gray.900',
 };
 

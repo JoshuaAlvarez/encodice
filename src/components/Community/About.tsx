@@ -14,8 +14,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
-import { RiCakeLine } from "react-icons/ri";
+// import { HiOutlineDotsCircleHorizontal } from "react-icons/hi";
+// import { RiCakeLine } from "react-icons/ri";
 import { FaLandmark } from "react-icons/fa";
 import { Community, communityState } from "../../atoms/communitiesAtom";
 import { auth, firestore, storage } from "../../firebase/clientApp";
@@ -61,11 +61,11 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
   };
 
   return (
-    <Box position={"sticky"} top="14px">
+    <Box position={"sticky"} top="12px">
       <Flex
         justify={"space-between"}
         align="center"
-        bg="blue.400"
+        bg="blue.500"
         color="white"
         p={3}
         borderRadius="4px 4px 0px 0px"
@@ -73,7 +73,7 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
         <Text fontSize={"10pt"} fontWeight={700}>
           Información del Tema
         </Text>
-        <Icon as={HiOutlineDotsCircleHorizontal} />
+        {/*<Icon as={HiOutlineDotsCircleHorizontal} />*/}
       </Flex>
       <Flex
         direction={"column"}
@@ -85,12 +85,12 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
           <Flex width={"100%"} p={2} fontSize="10pt" fontWeight={700}>
             <Flex direction={"column"} flexGrow={1}>
               <Text>{communityData.numberOfMembers.toLocaleString()}</Text>
-              <Text>Members</Text>
+              <Text>Miembros</Text>
             </Flex>
-            <Flex direction={"column"} flexGrow={1}>
-              <Text>1</Text>
-              <Text>Online</Text>
-            </Flex>
+            {/*<Flex direction={"column"} flexGrow={1}>*/}
+            {/*  <Text>1</Text>*/}
+            {/*  <Text>En línea</Text>*/}
+            {/*</Flex>*/}
           </Flex>
           <Divider />
           <Flex
