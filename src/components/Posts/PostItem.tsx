@@ -152,7 +152,14 @@ const PostItem: React.FC<PostItemProps> = ({
                     color="blue.600"
                   />
                 )}
-                <Link></Link>
+                <Link href={`tema/${post.communityId}`}>
+                  <Text
+                    fontWeight={700}
+                    _hover={{ textDecoration: "underline" }}
+                    onClick={(event) => event.stopPropagation()}
+                  >{`tema/${post.communityId}`}</Text>
+                </Link>
+                <Icon as={BsDot} color="gray.500" fontSize={8} />
               </>
             )}
             <Text>
