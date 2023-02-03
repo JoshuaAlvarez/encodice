@@ -1,6 +1,18 @@
-import { Flex, Skeleton, SkeletonCircle, Stack } from "@chakra-ui/react";
+import {
+  Flex,
+  Icon,
+  Link,
+  Skeleton,
+  SkeletonCircle,
+  Stack,
+  Text,
+  Image,
+  Box,
+  Button,
+} from "@chakra-ui/react";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import { FaLandmark } from "react-icons/fa";
 import { Community } from "../../atoms/communitiesAtom";
 import { firestore } from "../../firebase/clientApp";
 import useCommunityData from "../../hooks/useCommunityData";
@@ -56,7 +68,7 @@ const Suggestions: React.FC = () => {
         Temas principales
       </Flex>
       <Flex direction={"column"}>
-        {loading  ? (
+        {loading ? (
           <Stack mt={2} p={3}>
             <Flex justify={"space-between"} align="center">
               <SkeletonCircle size="10" />
@@ -64,7 +76,7 @@ const Suggestions: React.FC = () => {
             </Flex>
             <Flex justify={"space-between"} align="center">
               <SkeletonCircle size={"10"} />
-              <Skeleton height={"10px"} width="70%" /> 
+              <Skeleton height={"10px"} width="70%" />
             </Flex>
             <Flex justify={"space-between"} align="center">
               <SkeletonCircle size={"10"} />
@@ -72,10 +84,66 @@ const Suggestions: React.FC = () => {
             </Flex>
           </Stack>
         ) : (
-          
-        )
-
-        }
+          <>
+            {communities.map((item, index) => {
+              const isJoined = !!communityStateValue.mySnippets.find(
+                (snippet) => snippet.communityId === item.id
+              );
+              return (
+                <Link key={item.id} href={`/tema/${item.id}`}>
+                  <Flex
+                    align={"center"}
+                    fontSize="10pt"
+                    borderBottom="1px solid"
+                    borderColor="gray.200"
+                    p="10px 12px"
+                  >
+                    <Flex width="80%" align="center">
+                      <Flex width="15%">
+                        <Text>{index + 1}</Text>
+                      </Flex>
+                      <Flex align="center" width="80%">
+                        {item.imageURL ? (
+                          <Image
+                            src={item.imageURL}
+                            borderRadius="full"
+                            boxSize="28px"
+                            mr={2}
+                          />
+                        ) : (
+                          <Icon
+                            as={FaLandmark}
+                            fontSize={30}
+                            color="brand.100"
+                            mr={2}
+                          />
+                        )}
+                        <span
+                          style={{
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {`tema/${item.id}`}
+                        </span>
+                      </Flex>
+                    </Flex>
+                    <Box>
+                      <Button
+                        height="22px"
+                        fontSize="8pt"
+                        variant={isJoined ? "outline" : "solid"}
+                      >
+                        {isJoined ? "Joined" : "Join"}
+                      </Button>
+                    </Box>
+                  </Flex>
+                </Link>
+              );
+            })}
+          </>
+        )}
       </Flex>
     </Flex>
   );
