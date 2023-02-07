@@ -10,7 +10,7 @@ import { Button } from './button';
 export const theme = extendTheme({
   colors: {
     brand: {
-      100: "#F2740D", //Naranja de StackOverflow
+      100: "#F2740D", //Custom orange
     },
   },
   fonts: {

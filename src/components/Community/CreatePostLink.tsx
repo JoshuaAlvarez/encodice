@@ -1,4 +1,4 @@
-import { Flex, Icon, Input } from "@chakra-ui/react";
+import { Button, Flex, Icon, Input, Link } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -7,10 +7,15 @@ import { FaLandmark } from "react-icons/fa";
 import { IoImageOutline } from "react-icons/io5";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../atoms/authModalAtom";
+import { Community } from "../../atoms/communitiesAtom";
 import { auth } from "../../firebase/clientApp";
 import useDirectory from "../../hooks/useDirectory";
 
-const CreatePostLink: React.FC = () => {
+type CreatePostLinkProps = {
+  communityData: Community;
+};
+
+const CreatePostLink: React.FC<CreatePostLinkProps> = ({ communityData }) => {
   const router = useRouter();
   const [user] = useAuthState(auth);
   const setAuthModalState = useSetRecoilState(authModalState);
@@ -33,18 +38,13 @@ const CreatePostLink: React.FC = () => {
   };
 
   return (
-    <Flex
-      justify="space-evenly"
-      align="center"
-      bg="white"
-      height="56px"
-      borderRadius={4}
-      border="1px solid"
-      borderColor="gray.300"
-      p={2}
-      mb={4}
-    >
-      <Icon as={FaLandmark} fontSize={36} color="gray.300" mr={4} />
+    <Flex align="right" p={2} mb={4}>
+      <Link href={`/tema/${communityData.id}/submit`}>
+        <Button mt={3} height="30px">
+          Crear una publicación
+        </Button>
+      </Link>
+      {/* <Icon as={FaLandmark} fontSize={36} color="gray.300" mr={4} />
       <Input
         placeholder="Crear una publicación"
         fontSize="10pt"
@@ -74,7 +74,7 @@ const CreatePostLink: React.FC = () => {
         color="gray.400"
         cursor="pointer"
       />
-      <Icon as={BsLink45Deg} fontSize={24} color="gray.400" cursor="pointer" />
+      <Icon as={BsLink45Deg} fontSize={24} color="gray.400" cursor="pointer" /> */}
     </Flex>
   );
 };

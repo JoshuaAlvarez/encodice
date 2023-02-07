@@ -16,13 +16,13 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
     useCommunityData();
   const isJoined = !!communityStateValue.mySnippets.find(
     (item) => item.communityId === communityData.id
-  ); // read from our communitySnippets
+  ); // fetch communitySnippets
 
   return (
-    <Flex direction="column" width="100%"  height="100px">
+    <Flex direction="column" width="100%" height="100px">
       <Box height="5%" bg="brand.100" />
       <Flex justify="center" bg="#f4f4f4" flexGrow={1}>
-        <Flex width="95%" maxWidth="1100px" >
+        <Flex width="95%" maxWidth="1100px">
           {communityStateValue.currentCommunity?.imageURL ? (
             <Image
               borderRadius="5px"
@@ -66,18 +66,6 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
               {isJoined ? "Suscrito" : "Suscríbete a este tema"}
             </Button>
             <Spacer />
-            <Flex>
-              <Link href={`/tema/${communityData.id}/submit`}>
-                <Button
-                    mt={3}
-                    height="33px"
-                    pr={6}
-                    pl={6}
-                >
-                  Crear una publicación
-                </Button>
-              </Link>
-            </Flex>
           </Flex>
         </Flex>
       </Flex>

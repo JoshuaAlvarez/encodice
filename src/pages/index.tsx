@@ -134,7 +134,11 @@ const Home: NextPage = () => {
   return (
     <PageContent>
       <>
-        <CreatePostLink />
+        {communityStateValue.currentCommunity && (
+          <CreatePostLink
+            communityData={communityStateValue.currentCommunity}
+          />
+        )}
         {loading ? (
           <PostLoader />
         ) : (
@@ -158,9 +162,9 @@ const Home: NextPage = () => {
           </Stack>
         )}
       </>
-      <>
+      <Stack spacing={5}>
         <Suggestions />
-      </>
+      </Stack>
     </PageContent>
   );
 };

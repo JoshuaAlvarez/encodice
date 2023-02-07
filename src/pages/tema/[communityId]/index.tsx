@@ -9,7 +9,7 @@ import Header from "../../../components/Community/Header";
 import PageContent from "../../../components/Layout/PageContent";
 import CreatePostLink from "../../../components/Community/CreatePostLink";
 import Posts from "../../../components/Posts/Posts";
-import { useFocusEffect } from "@chakra-ui/react";
+import { Flex, useFocusEffect } from "@chakra-ui/react";
 import { useSetRecoilState } from "recoil";
 import About from "../../../components/Community/About";
 
@@ -37,7 +37,9 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ communityData }) => {
       <Header communityData={communityData} />
       <PageContent>
         <>
-          <CreatePostLink />
+          <Flex>
+            <CreatePostLink communityData={communityData} />
+          </Flex>
           <Posts communityData={communityData} />
         </>
         <>

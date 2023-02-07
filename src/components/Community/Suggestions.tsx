@@ -92,6 +92,7 @@ const Suggestions: React.FC = () => {
               return (
                 <Link key={item.id} href={`/tema/${item.id}`}>
                   <Flex
+                    position={"relative"}
                     align={"center"}
                     fontSize="10pt"
                     borderBottom="1px solid"
@@ -129,19 +130,28 @@ const Suggestions: React.FC = () => {
                         </span>
                       </Flex>
                     </Flex>
-                    <Box>
+                    <Box position="absolute" right="10px">
                       <Button
                         height="22px"
                         fontSize="8pt"
                         variant={isJoined ? "outline" : "solid"}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          onJoinOrLeaveCommunity(item, isJoined);
+                        }}
                       >
-                        {isJoined ? "Joined" : "Join"}
+                        {isJoined ? "Suscrito" : "Suscribete"}
                       </Button>
                     </Box>
                   </Flex>
                 </Link>
               );
             })}
+            <Box p="10px 20px">
+              <Button height="30px" width="100%">
+                View All
+              </Button>
+            </Box>
           </>
         )}
       </Flex>
