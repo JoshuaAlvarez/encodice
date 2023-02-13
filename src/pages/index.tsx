@@ -11,8 +11,6 @@ import {
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useRecoilValue } from "recoil";
-import { communityState } from "../atoms/communitiesAtom";
 import { Post, PostVote } from "../atoms/postsAtom";
 import CreatePostLink from "../components/Community/CreatePostLink";
 import Suggestions from "../components/Community/Suggestions";
@@ -135,9 +133,7 @@ const Home: NextPage = () => {
     <PageContent>
       <>
         {communityStateValue.currentCommunity && (
-          <CreatePostLink
-            communityData={communityStateValue.currentCommunity}
-          />
+          <CreatePostLink/>
         )}
         {loading ? (
           <PostLoader />

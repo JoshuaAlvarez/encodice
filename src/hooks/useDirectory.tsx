@@ -6,12 +6,12 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { communityState } from "../atoms/communitiesAtom";
 import {
   DirectoryMenuItem,
-  directoryMenuState,
+  directoryMenuStateAtom,
 } from "../atoms/directoryMenuAtom";
 
 const useDirectory = () => {
   const [directoryState, setDirectoryState] =
-    useRecoilState(directoryMenuState);
+    useRecoilState(directoryMenuStateAtom);
   const router = useRouter();
   const communityStateValue = useRecoilValue(communityState);
 

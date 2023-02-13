@@ -15,21 +15,35 @@ export const Button: ComponentStyleConfig = {
         },
         md: {
             fontSize: "11pt",
-            // height: "28px",
         },
     },
     variants: {
         solid: {
-            color: "white",
-            bg: "#0A95FF",
+            color: "black",
+            bg: "white",
+            border: "1px solid",
+            borderColor: "black",
             _hover: {
-                bg: "#071487",
+                bg: "#F9F9F9",
+                boxShadow:
+                    'inset 0 0 0 1px white, inset 0 0 0 2px #ccc',
             },
+            boxShadow:
+                'inset 0px 1px 2px rgba(255,255,255,0.3), inset 0px -1px 2px rgba(0,0,0,1)',
         },
         outline: {
-            color: "#071487",
-            border: "2px solid",
-            borderColor: "#0A95FF",
+            color: "white",
+            bg: "#192f60",
+            border: "1px solid",
+            borderColor: "#192f60",
+            boxShadow:
+                'inset 0px 1.5px 2px rgba(173,216,230,0.3), inset 0px -1px 2px rgba(255,255,255,0.3)',
+            _hover: {
+                color: "black",
+                bg: "white",
+                boxShadow:
+                    'inset 0 0 1.5px 1px white, inset 0 0 0 2px #ccc',
+            },
         },
         oauth: {
             height: "35px",

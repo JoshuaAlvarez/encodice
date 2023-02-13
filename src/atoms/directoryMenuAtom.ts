@@ -16,7 +16,7 @@ interface DirectoryMenuState {
 }
 
 export const defaultMenuItem: DirectoryMenuItem = {
-    displayText: 'Lista de Temas',
+    displayText: 'Temas',
     link: '/',
     icon: GiBookshelf,
     iconColor: 'gray.900',
@@ -27,7 +27,7 @@ export const defaultMenuState: DirectoryMenuState = {
     selectedMenuItem: defaultMenuItem,
 };
 
-export const directoryMenuState = atom<DirectoryMenuState>({
-    key: "directoryMenuState",
+export const directoryMenuStateAtom = atom<DirectoryMenuState>({
+    key: "directoryMenuStateAtom",
     default: defaultMenuState,
 });

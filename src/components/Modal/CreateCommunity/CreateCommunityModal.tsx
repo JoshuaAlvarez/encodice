@@ -85,7 +85,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
           creatorId: user?.uid,
           createdAt: serverTimestamp(),
           numberOfMembers: 1,
-          privacyType: communityType,
+          // privacyType: communityType,
         });
 
         // Create communitySnippet on user

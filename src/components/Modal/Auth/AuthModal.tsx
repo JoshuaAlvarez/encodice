@@ -61,7 +61,7 @@ const AuthModal: React.FC = () => {
                 <>
                   <OAuthButtons />
                   <Text color="gray.500" fontWeight={700}>
-                    O
+                    Ó
                   </Text>
                   <AuthInputs />
                 </>

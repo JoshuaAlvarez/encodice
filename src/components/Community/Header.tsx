@@ -1,60 +1,57 @@
-import { Box, Button, Flex, Icon, Image, Text, Spacer } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { Box, Flex, Icon, Image, Text, Spacer } from "@chakra-ui/react";
+import React from "react";
 import { FaLandmark } from "react-icons/fa";
 import { Community } from "../../atoms/communitiesAtom";
 import useCommunityData from "../../hooks/useCommunityData";
-import { useSetRecoilState } from "recoil";
-import { MdOutlineDoorbell, MdDoorbell } from "react-icons/md";
-import Link from "next/link";
 
 type HeaderProps = {
   communityData: Community;
 };
 
 const Header: React.FC<HeaderProps> = ({ communityData }) => {
-  const { communityStateValue, onJoinOrLeaveCommunity, loading } =
+  const { communityStateValue} =
     useCommunityData();
-  const isJoined = !!communityStateValue.mySnippets.find(
-    (item) => item.communityId === communityData.id
-  ); // fetch communitySnippets
+  !!communityStateValue.mySnippets.find(
+      (item) => item.communityId === communityData.id
+  );
 
   return (
     <Flex direction="column" width="100%" height="100px">
-      <Box height="5%" bg="brand.100" />
-      <Flex justify="center" bg="#f4f4f4" flexGrow={1}>
+      <Box height="5%" bg="white" /> {/* Later give Navbar shadow bot */}
+      <Flex justify="center" bg="#192f60" flexGrow={1}>
         <Flex width="95%" maxWidth="1100px">
           {communityStateValue.currentCommunity?.imageURL ? (
             <Image
               borderRadius="5px"
               boxSize="80px"
               src={communityStateValue.currentCommunity.imageURL}
-              alt="Community Image"
+              alt="Topic Image"
               position="relative"
-              top={-3}
+              top={3}
               color="red.500"
-              border="4px solid white"
+              border="1px solid white"
             />
           ) : (
             <Icon
+              borderRadius="5%"
               as={FaLandmark}
-              fontSize={64}
+              fontSize={70}
               position="relative"
-              top={-3}
-              color="blue.500"
-              border="4px solid white"
-              borderRadius="full"
+              top={3}
+              color="white"
+              border="3px solid white"
             />
           )}
-          <Flex padding="10px 16px">
+          <Flex padding="12px 18px">
             <Flex direction="column" mr={6}>
-              <Text fontWeight={800} fontSize="16pt">
+              <Text fontWeight={850} fontSize="23pt" color={"white"}>
                 {communityData.id}
               </Text>
-              <Text fontWeight={600} fontSize="10pt" color="gray.400">
-                tema/{communityData.id}
-              </Text>
+              {/*<Text fontWeight={600} fontSize="10pt" color="gray.400">
+                {communityData.id}
+              </Text>*/}
             </Flex>
-            <Button
+            {/*<Button
               variant={isJoined ? "outline" : "solid"}
               height="33px"
               pr={6}
@@ -64,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
               onClick={() => onJoinOrLeaveCommunity(communityData, isJoined)}
             >
               {isJoined ? "Suscrito" : "Suscríbete a este tema"}
-            </Button>
+            </Button>*/}
             <Spacer />
           </Flex>
         </Flex>

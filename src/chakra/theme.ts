@@ -10,11 +10,11 @@ import { Button } from './button';
 export const theme = extendTheme({
   colors: {
     brand: {
-      100: "#F2740D", //Custom orange
+      100: "#F2740D",
     },
   },
   fonts: {
-    body: "Nunito Sans, sans-serif", //https://www.npmjs.com/package/@fontsource/nunito-sans
+    body: "Nunito Sans, sans-serif", // https://www.npmjs.com/package/@fontsource/nunito-sans
   },
   styles: {
     global: () => ({

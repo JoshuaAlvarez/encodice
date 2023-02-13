@@ -9,7 +9,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { TiHome } from "react-icons/ti";
 import useDirectory from "../../../hooks/useDirectory";
 import Communities from "./Communities";
 
@@ -39,6 +38,7 @@ const Directory: React.FC = () => {
                 borderRadius="full"
                 boxSize="24px"
                 mr={2}
+                alt="Imagen del tema"
               />
             ) : (
               <Icon
@@ -48,7 +48,6 @@ const Directory: React.FC = () => {
                 color={directoryState.selectedMenuItem.iconColor}
               />
             )}
-            {/* <Icon fontSize={24} mr={{ base: 1, md: 2 }} as={TiHome} /> */}
             <Flex display={{ base: "none", lg: "flex" }}>
               <Text fontWeight={600} fontSize="10pt">
                 {directoryState.selectedMenuItem.displayText}

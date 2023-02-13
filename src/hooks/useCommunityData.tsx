@@ -13,7 +13,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { authModalState } from "../atoms/authModalAtom";
 import {
   Community,
-  CommunitySnippet,
+  CommunityOverview,
   communityState,
 } from "../atoms/communitiesAtom";
 import { auth, firestore } from "../firebase/clientApp";
@@ -58,7 +58,7 @@ const useCommunityData = () => {
       const snippets = snippetDocs.docs.map((doc) => ({ ...doc.data() }));
       setCommunityStateValue((prev) => ({
         ...prev,
-        mySnippets: snippets as CommunitySnippet[],
+        mySnippets: snippets as CommunityOverview[],
         snippetsFetched: true,
       }));
 
@@ -77,7 +77,7 @@ const useCommunityData = () => {
       const batch = writeBatch(firestore);
 
       //creating a new community snippet
-      const newSnippet: CommunitySnippet = {
+      const newSnippet: CommunityOverview = {
         communityId: communityData.id,
         imageURL: communityData.imageURL || "",
         isModerator: user?.uid === communityData.creatorId,
