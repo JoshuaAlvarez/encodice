@@ -60,20 +60,20 @@ const Login: React.FC<LoginProps> = () => {
         required
         name="password"
         onChange={onChange}
-        placeholder="password"
+        placeholder="Contraseña"
         type={"password"}
         fontSize="10pt"
         _placeholder={{ color: "gray.500" }}
         _hover={{
           bg: "white",
           border: "1px solid",
-          borderColor: "blue.500",
+          borderColor: "blue.600",
         }}
         _focus={{
           outline: "none",
           bg: "white",
           border: "1px solid",
-          borderColor: "blue.500",
+          borderColor: "blue.600",
         }}
         bg="gray.50"
       />

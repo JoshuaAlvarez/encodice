@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Post } from "../../../../atoms/postsAtom";
-import About from "../../../../components/Community/About";
+import About from "../../../../components/Topic/About";
 import PageContent from "../../../../components/Layout/PageContent";
 import Comments from "../../../../components/Posts/Comments/Comments";
 import PostItem from "../../../../components/Posts/PostItem";
 import { auth, firestore } from "../../../../firebase/clientApp";
-import useCommunityData from "../../../../hooks/useCommunityData";
+import useTopicData from "../../../../hooks/useTopicData";
 import usePosts from "../../../../hooks/usePosts";
 
 const PostPage: React.FC = () => {
@@ -17,7 +17,7 @@ const PostPage: React.FC = () => {
   const { postStateValue, setPostStateValue, onDeletePost, onVote } =
     usePosts();
   const router = useRouter();
-  const { communityStateValue } = useCommunityData();
+  const { topicStateValue } = useTopicData();
 
   const fetchPost = async (postId: string) => {
     try {
@@ -59,12 +59,12 @@ const PostPage: React.FC = () => {
         <Comments
           user={user as User}
           selectedPost={postStateValue.selectedPost}
-          communityId={postStateValue.selectedPost?.communityId as string}
+          topicId={postStateValue.selectedPost?.topicId as string}
         />
       </>
       <>
-        {communityStateValue.currentCommunity && (
-          <About communityData={communityStateValue.currentCommunity} />
+        {topicStateValue.currentTopic && (
+          <About topicData={topicStateValue.currentTopic} />
         )}
       </>
     </PageContent>

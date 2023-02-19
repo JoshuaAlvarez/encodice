@@ -35,7 +35,7 @@ type PostItemProps = {
     event: React.MouseEvent<SVGElement, MouseEvent>,
     post: Post,
     vote: number,
-    communityId: string
+    topicId: string
   ) => void;
   onDeletePost: (post: Post) => Promise<boolean>;
   onSelectPost?: (post: Post) => void;
@@ -72,7 +72,7 @@ const PostItem: React.FC<PostItemProps> = ({
 
       console.log("Post was successfully deleted");
       if (singlePostPage) {
-        router.push(`/tema/${post.communityId}`);
+        router.push(`/tema/${post.topicId}`);
       }
     } catch (error: any) {
       setError(error.message);
@@ -104,7 +104,7 @@ const PostItem: React.FC<PostItemProps> = ({
           }
           color={userVoteValue === 1 ? "brand.100" : "gray.400"}
           fontSize={22}
-          onClick={(event) => onVote(event, post, 1, post.communityId)}
+          onClick={(event) => onVote(event, post, 1, post.topicId)}
           cursor="pointer"
         />
         <Text fontSize={"9pt"}>{post.voteStatus}</Text>
@@ -116,7 +116,7 @@ const PostItem: React.FC<PostItemProps> = ({
           }
           color={userVoteValue === -1 ? "#4379ff" : "gray.400"}
           fontSize={22}
-          onClick={(event) => onVote(event, post, -1, post.communityId)}
+          onClick={(event) => onVote(event, post, -1, post.topicId)}
           cursor="pointer"
         />
       </Flex>
@@ -137,9 +137,9 @@ const PostItem: React.FC<PostItemProps> = ({
             {/* Home Page Check */}
             {homePage && (
               <>
-                {post.communityImageURL ? (
+                {post.topicImageURL ? (
                   <Image
-                    src={post.communityImageURL}
+                    src={post.topicImageURL}
                     borderRadius="full"
                     boxSize={10}
                     mr={2}
@@ -152,12 +152,12 @@ const PostItem: React.FC<PostItemProps> = ({
                     color="blue.600"
                   />
                 )}
-                <Link href={`tema/${post.communityId}`}>
+                <Link href={`tema/${post.topicId}`}>
                   <Text
                     fontWeight={700}
                     _hover={{ textDecoration: "underline" }}
                     onClick={(event) => event.stopPropagation()}
-                  >{`tema/${post.communityId}`}</Text>
+                  >{`tema/${post.topicId}`}</Text>
                 </Link>
                 <Icon as={BsDot} color="gray.500" fontSize={8} />
               </>

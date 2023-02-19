@@ -13,39 +13,39 @@ import {
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { FaLandmark } from "react-icons/fa";
-import { Community } from "../../atoms/communitiesAtom";
+import { Topic } from "../../atoms/topicsAtom";
 import { firestore } from "../../firebase/clientApp";
-import useCommunityData from "../../hooks/useCommunityData";
+import useTopicData from "../../hooks/useTopicData";
 
 const Suggestions: React.FC = () => {
-  const [communities, setCommunities] = useState<Community[]>([]);
+  const [topics, setTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(false);
-  const { communityStateValue, onJoinOrLeaveCommunity } = useCommunityData();
+  const { topicStateValue, onJoinOrLeaveTopic } = useTopicData();
 
-  const getCommunitySuggestions = async () => {
+  const getTopicSuggestions = async () => {
     setLoading(true);
     try {
-      const communityQuery = query(
-          collection(firestore, "communities"),
+      const topicQuery = query(
+          collection(firestore, "topics"),
           orderBy("numberOfMembers", "desc"),
           limit(5)
       );
-      const communityDocs = await getDocs(communityQuery);
-      const communities = communityDocs.docs.map((doc) => ({
+      const topicDocs = await getDocs(topicQuery);
+      const topics = topicDocs.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      setCommunities(communities as Community[]);
+      setTopics(topics as Topic[]);
     } catch (error) {
-      console.error("getCommunitySuggestions error", error);
-      setCommunities([]);
+      console.error("getTopicSuggestions error", error);
+      setTopics([]);
     }
     setLoading(false);
   };
 
   useEffect(() => {
     const getData = async () => {
-      await getCommunitySuggestions();
+      await getTopicSuggestions();
     };
     getData();
   }, []);
@@ -89,9 +89,9 @@ const Suggestions: React.FC = () => {
               </Stack>
           ) : (
               <>
-                {communities.map((item, index) => {
-                  const isJoined = !!communityStateValue.mySnippets.find(
-                      (snippet) => snippet.communityId === item.id
+                {topics.map((item, index) => {
+                  const isJoined = !!topicStateValue.mySnippets.find(
+                      (snippet) => snippet.topicId === item.id
                   );
                   return (
                       <Link key={item.id} href={`/tema/${item.id}`}>
@@ -142,7 +142,7 @@ const Suggestions: React.FC = () => {
                                 variant={isJoined ? "outline" : "solid"}
                                 onClick={(event) => {
                                   event.stopPropagation();
-                                  onJoinOrLeaveCommunity(item, isJoined);
+                                  onJoinOrLeaveTopic(item, isJoined);
                                 }}
                             >
                               {isJoined ? "Suscrito" : "Suscríbete"}

@@ -14,9 +14,9 @@ const OAuthButton: React.FC = () => {
         onClick={() => signInWithGoogle()}
       >
         <Image src="/images/googlelogo.png" height="20px" mr={4} />
-        Continuar con Google
+        Iniciar sesión con Google
       </Button>
-      {/* <Button variant={"oauth"}>Otros servicios</Button> */}
+      {/* <Button variant={"oauth"}>GitHub</Button> */}
       {error && <Text>{error.message}</Text>}
     </Flex>
   );

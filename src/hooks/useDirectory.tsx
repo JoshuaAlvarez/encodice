@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { FaLandmark } from "react-icons/fa";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { communityState } from "../atoms/communitiesAtom";
+import { topicState } from "../atoms/topicsAtom";
 import {
   DirectoryMenuItem,
   directoryMenuStateAtom,
@@ -13,7 +13,7 @@ const useDirectory = () => {
   const [directoryState, setDirectoryState] =
     useRecoilState(directoryMenuStateAtom);
   const router = useRouter();
-  const communityStateValue = useRecoilValue(communityState);
+  const topicStateValue = useRecoilValue(topicState);
 
   const onSelectMenuItem = (menuItem: DirectoryMenuItem) => {
     setDirectoryState((prev) => ({
@@ -34,21 +34,21 @@ const useDirectory = () => {
   };
 
   useEffect(() => {
-    const { currentCommunity } = communityStateValue;
+    const { currentTopic } = topicStateValue;
 
-    if (currentCommunity) {
+    if (currentTopic) {
       setDirectoryState((prev) => ({
         ...prev,
         selectedMenuItem: {
-          displayText: `tema/${currentCommunity.id}`,
-          link: `/tema/${currentCommunity.id}`,
-          imageURL: currentCommunity.imageURL,
+          displayText: `tema/${currentTopic.id}`,
+          link: `/tema/${currentTopic.id}`,
+          imageURL: currentTopic.imageURL,
           icon: FaLandmark,
           iconColor: "blue.500",
         },
       }));
     }
-  }, [communityStateValue.currentCommunity]);
+  }, [topicStateValue.currentTopic]);
 
   return { directoryState, toggleMenuOpen, onSelectMenuItem };
 };

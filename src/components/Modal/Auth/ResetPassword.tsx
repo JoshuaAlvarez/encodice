@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import { Button, Flex, Icon, Input, Text } from "@chakra-ui/react";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import { BsDot, BsJournalText } from "react-icons/bs";
-import { authModalState /*, ModalView*/ } from "../../../atoms/authModalAtom";
+import { authModalState } from "../../../atoms/authModalAtom";
 import { auth } from "../../../firebase/clientApp";
 import { useSetRecoilState } from "recoil";
 
-// type ResetPasswordProps = {
-//   toggleView: (view: ModalView) => void;
-// };
-
-const ResetPassword: React.FC /* <ResetPasswordProps> */ =
+const ResetPassword: React.FC =
   (/* { toggleView } */) => {
     const setAuthModalState = useSetRecoilState(authModalState);
     const [email, setEmail] = useState("");
@@ -28,7 +24,7 @@ const ResetPassword: React.FC /* <ResetPasswordProps> */ =
       <Flex direction="column" alignItems="center" width="100%">
         <Icon as={BsJournalText} color="brand.100" fontSize={40} mb={2} />
         <Text fontWeight={700} mb={2}>
-          Restablece tu constraseña
+          Restablece tu contraseña
         </Text>
         {success ? (
           <Text mb={4}>Revisa tu correo electrónico</Text>
@@ -36,7 +32,7 @@ const ResetPassword: React.FC /* <ResetPasswordProps> */ =
           <>
             <Text fontSize="sm" textAlign="center" mb={2}>
               Ingresa el correo electrónico asociado con tu cuenta y te
-              enviaremos un enlace de restablecimiento
+              llegará un enlace de restablecimiento
             </Text>
             <form onSubmit={onSubmit} style={{ width: "100%" }}>
               <Input
@@ -72,7 +68,7 @@ const ResetPassword: React.FC /* <ResetPasswordProps> */ =
                 type="submit"
                 isLoading={sending}
               >
-                Restablecer la constraseña
+                Restablecer la contraseña
               </Button>
             </form>
           </>

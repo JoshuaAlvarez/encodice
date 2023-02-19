@@ -4,16 +4,12 @@ import PageContent from "../../../components/Layout/PageContent";
 import NewPostForm from "../../../components/Posts/NewPostForm";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase/clientApp";
-import { useRecoilValue } from "recoil";
-import { communityState } from "../../../atoms/communitiesAtom";
-import useCommunityData from "../../../hooks/useCommunityData";
-import About from "../../../components/Community/About";
-
+import useTopicData from "../../../hooks/useTopicData";
+import About from "../../../components/Topic/About";
 const SubmitPostPage: React.FC = () => {
   const [user] = useAuthState(auth);
-  // const communityStateValue = useRecoilValue(communityState);
-  const { communityStateValue } = useCommunityData();
-  console.log("COMMUNITY", communityStateValue);
+  const { topicStateValue } = useTopicData();
+  console.log("Topic", topicStateValue);
 
   return (
     <PageContent>
@@ -24,13 +20,13 @@ const SubmitPostPage: React.FC = () => {
         {user && (
           <NewPostForm
             user={user}
-            communityImageURL={communityStateValue.currentCommunity?.imageURL}
+            topicImageURL={topicStateValue.currentTopic?.imageURL}
           />
         )}
       </>
       <>
-        {communityStateValue.currentCommunity && (
-          <About communityData={communityStateValue.currentCommunity} />
+        {topicStateValue.currentTopic && (
+          <About topicData={topicStateValue.currentTopic} />
         )}
       </>
     </PageContent>

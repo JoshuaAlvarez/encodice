@@ -29,13 +29,13 @@ import CommentItem, { Comment } from "./CommentItem";
 type CommentsProps = {
   user: User;
   selectedPost: Post | null;
-  communityId: string;
+  topicId: string;
 };
 
 const Comments: React.FC<CommentsProps> = ({
   user,
   selectedPost,
-  communityId,
+  topicId,
 }) => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState<Comment[]>([]);
@@ -49,14 +49,14 @@ const Comments: React.FC<CommentsProps> = ({
     try {
       const batch = writeBatch(firestore);
 
-      // create a comment document
+      // Create a comment document
       const commentDocRef = doc(collection(firestore, "comments"));
 
       const newComment: Comment = {
         id: commentDocRef.id,
         creatorId: user.uid,
         creatorDisplayText: user.email!.split("@")[0],
-        communityId,
+        topicId,
         postId: selectedPost?.id!,
         postTitle: selectedPost?.title!,
         text: commentText,
@@ -67,7 +67,7 @@ const Comments: React.FC<CommentsProps> = ({
 
       newComment.createdAt = { seconds: Date.now() / 1000 } as Timestamp;
 
-      // update post numberOfComments +1
+      // Update post numberOfComments +1
       const postDocRef = doc(firestore, "posts", selectedPost?.id!);
       batch.update(postDocRef, {
         numberOfComments: increment(1),
@@ -75,7 +75,7 @@ const Comments: React.FC<CommentsProps> = ({
 
       await batch.commit();
 
-      // update client recoil state
+      // Update client recoil state
       setCommentText("");
       setComments((prev) => [newComment, ...prev]);
       setPostState((prev) => ({
@@ -96,11 +96,11 @@ const Comments: React.FC<CommentsProps> = ({
     try {
       const batch = writeBatch(firestore);
 
-      // delete a comment document
+      // Delete a comment document
       const commentDocRef = doc(firestore, "comments", comment.id);
       batch.delete(commentDocRef);
 
-      // update post numberOfComments -1
+      // Update post numberOfComments -1
       const postDocRef = doc(firestore, "posts", selectedPost?.id!);
       batch.update(postDocRef, {
         numberOfComments: increment(-1),
@@ -108,7 +108,7 @@ const Comments: React.FC<CommentsProps> = ({
 
       await batch.commit();
 
-      // update client recoil state
+      // Update client recoil state
       setPostState((prev) => ({
         ...prev,
         selectedPost: {
@@ -190,7 +190,7 @@ const Comments: React.FC<CommentsProps> = ({
                 p={20}
               >
                 <Text fontWeight={700} opacity={0.3}>
-                  Aún no hay commentarios
+                  Aún no hay comentarios
                 </Text>
               </Flex>
             ) : (
@@ -201,7 +201,8 @@ const Comments: React.FC<CommentsProps> = ({
                     comment={comment}
                     onDeleteComment={onDeleteComment}
                     loadingDelete={loadingDeleteId === comment.id}
-                    userId={user.uid}
+                    //userId={user ? user.uid : null} //Unhandled Runtime Error TypeError: Cannot read properties of null (reading 'uid')
+                    userId={user && user.uid ? user.uid : ""} // This line works fine
                   />
                 ))}
               </>

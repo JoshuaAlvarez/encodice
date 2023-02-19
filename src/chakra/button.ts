@@ -48,9 +48,9 @@ export const Button: ComponentStyleConfig = {
         oauth: {
             height: "35px",
             border: "2px solid",
-            borderColor: "gray.400",
+            borderColor: "gray.500",
             _hover: {
-                bg: "gray.60",
+                bg: "gray.100",
             },
         },
     },

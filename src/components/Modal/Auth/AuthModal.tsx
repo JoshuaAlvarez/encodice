@@ -6,6 +6,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
@@ -30,49 +31,60 @@ const AuthModal: React.FC = () => {
   // Close the modal if valid user
   useEffect(() => {
     if (user) handleClose();
-    console.log("user", user);
   }, [user]);
 
   return (
-    <>
-      <Modal isOpen={modalState.open} onClose={handleClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader textAlign={"center"}>
-            {modalState.view === "login" && "Iniciar sesión"}
-            {modalState.view === "signup" && "Registro"}
-            {modalState.view === "resetPassword" && "Reset Password"}
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody
-            display={"flex"}
-            flexDirection="column"
-            alignItems={"center"}
-            justifyContent="center"
-            pb={6}
-          >
-            <Flex
-              direction={"column"}
-              align="center"
-              justify={"center"}
-              width="70%"
+      <>
+        <Modal isOpen={modalState.open} onClose={handleClose} >
+          <ModalOverlay />
+          <ModalContent bg="#F8F9F9">
+            <ModalHeader textAlign={"center"}>
+              {modalState.view === "login" && "Iniciar sesión"}
+              {modalState.view === "signup" && "Registro"}
+              {modalState.view === "resetPassword" && "Reset Password"}
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody
+                display={"flex"}
+                flexDirection="column"
+                alignItems={"center"}
+                justifyContent="center"
+                pb={6}
             >
-              {modalState.view === "login" || modalState.view === "signup" ? (
-                <>
-                  <OAuthButtons />
-                  <Text color="gray.500" fontWeight={700}>
-                    Ó
-                  </Text>
-                  <AuthInputs />
-                </>
-              ) : (
-                <ResetPassword />
+              {loading && (
+                  <Flex justify={"center"} width="100%" height="100%">
+                    <Spinner />
+                  </Flex>
               )}
-            </Flex>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
+              {error && (
+                  <Text color="red.500" fontWeight={700}>
+                    {error.message}
+                  </Text>
+              )}
+              {!loading && !error && (
+                  <Flex
+                      direction={"column"}
+                      align="center"
+                      justify={"center"}
+                      width="70%"
+                  >
+                    {modalState.view === "login" || modalState.view === "signup" ? (
+                        <>
+                          <OAuthButtons />
+                          <Text color="gray.500" fontWeight={700}>
+                            O
+                          </Text>
+                          <AuthInputs />
+                        </>
+                    ) : (
+                        <ResetPassword />
+                    )}
+                  </Flex>
+              )}
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </>
   );
 };
 export default AuthModal;

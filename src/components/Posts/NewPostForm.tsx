@@ -31,7 +31,7 @@ import useSelectFile from "../../hooks/useSelectFile";
 
 type NewPostFormProps = {
   user: User;
-  communityImageURL?: string;
+  topicImageURL?: string;
 };
 
 const formTabs = [
@@ -64,7 +64,7 @@ export type TabItems = {
 
 const NewPostForm: React.FC<NewPostFormProps> = ({
   user,
-  communityImageURL,
+  topicImageURL,
 }) => {
   const router = useRouter();
   const [selectedTab, setSelectedTab] = useState(formTabs[0].title);
@@ -78,12 +78,12 @@ const NewPostForm: React.FC<NewPostFormProps> = ({
   const [error, setError] = useState(false);
 
   const handleCreatePost = async () => {
-    const { communityId } = router.query;
-    // create new post object => type Post
+    const { topicId } = router.query;
+    // Create new post object => type Post
 
     const newPost: Post = {
-      communityId: communityId as string,
-      communityImageURL: communityImageURL || "",
+      topicId: topicId as string,
+      topicImageURL: topicImageURL || "",
       creatorId: user.uid,
       creatorDisplayName: user.email!.split("@")[0],
       title: textInputs.title,
@@ -94,7 +94,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({
     };
 
     try {
-      // store the post in db
+      // Store the post in DB
       const postDocRef = await addDoc(collection(firestore, "posts"), newPost);
 
       // Check for selectedFile
@@ -109,7 +109,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({
           imageURL: downloadURL,
         });
       }
-      // Redirect the user back to the communityPage using the router
+      // Redirect the user back to the topicPage using the router
       router.back();
     } catch (error: any) {
       console.log("handleCreatePost error", error.message);

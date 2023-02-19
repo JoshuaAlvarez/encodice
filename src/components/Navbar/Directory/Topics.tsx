@@ -1,21 +1,21 @@
 import { Box, Flex, Icon, MenuItem, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
-import CreateCommunityModal from "../../Modal/CreateCommunity/CreateCommunityModal";
+import CreateTopicModal from "../../Modal/CreateTopic/CreateTopicModal";
 import { GrAdd } from "react-icons/gr";
 import { useRecoilValue } from "recoil";
-import { communityState } from "../../../atoms/communitiesAtom";
+import { topicState } from "../../../atoms/topicsAtom";
 import MenuListItem from "./MenuListItem";
 import { FaLandmark } from "react-icons/fa";
 
-type CommunitiesProps = {};
+type TopicsProps = {};
 
-const Communities: React.FC<CommunitiesProps> = () => {
+const Topics: React.FC<TopicsProps> = () => {
   const [open, setOpen] = useState(false);
-  const mySnippets = useRecoilValue(communityState).mySnippets;
+  const mySnippets = useRecoilValue(topicState).mySnippets;
 
   return (
     <>
-      <CreateCommunityModal open={open} handleClose={() => setOpen(false)} />
+      <CreateTopicModal open={open} handleClose={() => setOpen(false)} />
       <Box mt={3} mb={4}>
         <Text pl={3} mb={1} fontSize="7pt" fontWeight={500} color="gray.500">
           Temas creados
@@ -24,10 +24,10 @@ const Communities: React.FC<CommunitiesProps> = () => {
           .filter((snippet) => snippet.isModerator)
           .map((snippet) => (
             <MenuListItem
-              key={snippet.communityId}
+              key={snippet.topicId}
               icon={FaLandmark}
-              displayText={`tema/${snippet.communityId}`}
-              link={`/tema/${snippet.communityId}`}
+              displayText={`tema/${snippet.topicId}`}
+              link={`/tema/${snippet.topicId}`}
               iconColor="brand.500"
               imageURL={snippet.imageURL}
             />
@@ -45,15 +45,15 @@ const Communities: React.FC<CommunitiesProps> = () => {
         >
           <Flex align="center">
             <Icon fontSize={20} mr={2} as={GrAdd} />
-            Crear comunidad
+            Crear Tema
           </Flex>
         </MenuItem>
         {mySnippets.map((snippet) => (
           <MenuListItem
-            key={snippet.communityId}
+            key={snippet.topicId}
             icon={FaLandmark}
-            displayText={`tema/${snippet.communityId}`}
-            link={`/tema/${snippet.communityId}`}
+            displayText={`tema/${snippet.topicId}`}
+            link={`/tema/${snippet.topicId}`}
             iconColor="blue.500"
             imageURL={snippet.imageURL}
           />
@@ -62,4 +62,4 @@ const Communities: React.FC<CommunitiesProps> = () => {
     </>
   );
 };
-export default Communities;
+export default Topics;

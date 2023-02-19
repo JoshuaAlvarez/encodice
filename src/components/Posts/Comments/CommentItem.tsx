@@ -12,7 +12,7 @@ export type Comment = {
   id: string;
   creatorId: string;
   creatorDisplayText: string;
-  communityId: string;
+  topicId: string;
   postId: string;
   postTitle: string;
   text: string;

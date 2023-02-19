@@ -20,12 +20,12 @@ const CreatePostLink: React.FC<CreatePostLinkProps> = () => { // Rename to Creat
       setAuthModalState({ open: true, view: "login" });
       return;
     }
-    const { communityId } = router.query;
+    const { topicId } = router.query;
 
-    if (!communityId) {
+    if (!topicId) {
       toggleMenuOpen();
     } else {
-      await router.push(`/tema/${communityId}/submit`).catch((error) => {
+      await router.push(`/tema/${topicId}/submit`).catch((error) => {
         console.error(error);
       });
       return;

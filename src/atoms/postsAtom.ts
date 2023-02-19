@@ -1,9 +1,10 @@
+// Defines types and a state for a user-generated post system with voting and creates a Recoil atom with default state
 import { Timestamp } from "firebase/firestore";
 import { atom } from "recoil";
 
 export type Post = {
     id?: string;
-    communityId: string;
+    topicId: string;
     creatorId: string;
     creatorDisplayName: string;
     title: string;
@@ -11,14 +12,14 @@ export type Post = {
     numberOfComments: number;
     voteStatus: number;
     imageURL?: string;
-    communityImageURL?: string;
+    topicImageURL?: string;
     createdAt: Timestamp;
 };
 
 export type PostVote = {
     id: string;
     postId: string;
-    communityId: string;
+    topicId: string;
     voteValue: number;
 }
 

@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import useDirectory from "../../../hooks/useDirectory";
-import Communities from "./Communities";
+import Topics from "./Topics";
 
 const Directory: React.FC = () => {
   const { directoryState, toggleMenuOpen } = useDirectory();
@@ -58,7 +58,7 @@ const Directory: React.FC = () => {
         </Flex>
       </MenuButton>
       <MenuList>
-        <Communities />
+        <Topics />
       </MenuList>
     </Menu>
   );

@@ -1,18 +1,18 @@
 import { Box, Flex, Icon, Image, Text, Spacer } from "@chakra-ui/react";
 import React from "react";
 import { FaLandmark } from "react-icons/fa";
-import { Community } from "../../atoms/communitiesAtom";
-import useCommunityData from "../../hooks/useCommunityData";
+import { Topic } from "../../atoms/topicsAtom";
+import useTopicData from "../../hooks/useTopicData";
 
 type HeaderProps = {
-  communityData: Community;
+  topicData: Topic;
 };
 
-const Header: React.FC<HeaderProps> = ({ communityData }) => {
-  const { communityStateValue} =
-    useCommunityData();
-  !!communityStateValue.mySnippets.find(
-      (item) => item.communityId === communityData.id
+const Header: React.FC<HeaderProps> = ({ topicData }) => {
+  const { topicStateValue} =
+    useTopicData();
+  !!topicStateValue.mySnippets.find(
+      (item) => item.topicId === topicData.id
   );
 
   return (
@@ -20,11 +20,11 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
       <Box height="5%" bg="white" /> {/* Later give Navbar shadow bot */}
       <Flex justify="center" bg="#192f60" flexGrow={1}>
         <Flex width="95%" maxWidth="1100px">
-          {communityStateValue.currentCommunity?.imageURL ? (
+          {topicStateValue.currentTopic?.imageURL ? (
             <Image
               borderRadius="5px"
               boxSize="80px"
-              src={communityStateValue.currentCommunity.imageURL}
+              src={topicStateValue.currentTopic.imageURL}
               alt="Topic Image"
               position="relative"
               top={3}
@@ -45,10 +45,10 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
           <Flex padding="12px 18px">
             <Flex direction="column" mr={6}>
               <Text fontWeight={850} fontSize="23pt" color={"white"}>
-                {communityData.id}
+                {topicData.id}
               </Text>
               {/*<Text fontWeight={600} fontSize="10pt" color="gray.400">
-                {communityData.id}
+                {topicData.id}
               </Text>*/}
             </Flex>
             {/*<Button
@@ -58,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
               pl={6}
               isLoading={loading}
               rightIcon={<MdOutlineDoorbell />}
-              onClick={() => onJoinOrLeaveCommunity(communityData, isJoined)}
+              onClick={() => onJoinOrLeaveTopic(topicData, isJoined)}
             >
               {isJoined ? "Suscrito" : "Suscríbete a este tema"}
             </Button>*/}

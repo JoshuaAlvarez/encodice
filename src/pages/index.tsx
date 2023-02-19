@@ -12,13 +12,13 @@ import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Post, PostVote } from "../atoms/postsAtom";
-import CreatePostLink from "../components/Community/CreatePostLink";
-import Suggestions from "../components/Community/Suggestions";
+import CreatePostLink from "../components/Topic/CreatePostLink";
+import Suggestions from "../components/Topic/Suggestions";
 import PageContent from "../components/Layout/PageContent";
 import PostItem from "../components/Posts/PostItem";
 import PostLoader from "../components/Posts/PostLoader";
 import { auth, firestore } from "../firebase/clientApp";
-import useCommunityData from "../hooks/useCommunityData";
+import useTopicData from "../hooks/useTopicData";
 import usePosts from "../hooks/usePosts";
 
 const Home: NextPage = () => {
@@ -31,19 +31,19 @@ const Home: NextPage = () => {
     onDeletePost,
     onVote,
   } = usePosts();
-  const { communityStateValue } = useCommunityData();
+  const { topicStateValue } = useTopicData();
 
   const createUserMainFeed = async () => {
     // traer posts de temas del usuario
     setLoading(true);
     try {
-      if (communityStateValue.mySnippets.length) {
-        const myCommunityIds = communityStateValue.mySnippets.map(
-          (snippet) => snippet.communityId
+      if (topicStateValue.mySnippets.length) {
+        const myTopicIds = topicStateValue.mySnippets.map(
+          (snippet) => snippet.topicId
         );
         const postQuery = query(
           collection(firestore, "posts"),
-          where("communityId", "in", myCommunityIds),
+          where("topicId", "in", myTopicIds),
           limit(10)
         );
         const postDocs = await getDocs(postQuery);
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
           posts: posts as Post[],
         }));
       } else {
-        createGuestMainFeed();
+        await createGuestMainFeed();
       }
     } catch (error) {
       console.log("createUserMainFeed error", error);
@@ -114,8 +114,8 @@ const Home: NextPage = () => {
   }, [user, loadingUser]);
 
   useEffect(() => {
-    if (communityStateValue.snippetsFetched) createUserMainFeed();
-  }, [communityStateValue.mySnippets]);
+    if (topicStateValue.snippetsFetched) createUserMainFeed();
+  }, [topicStateValue.mySnippets]);
 
   useEffect(() => {
     if (user && postStateValue.posts.length) fetchUserPostVotes();
@@ -132,7 +132,7 @@ const Home: NextPage = () => {
   return (
     <PageContent>
       <>
-        {communityStateValue.currentCommunity && (
+        {topicStateValue.currentTopic && (
           <CreatePostLink/>
         )}
         {loading ? (

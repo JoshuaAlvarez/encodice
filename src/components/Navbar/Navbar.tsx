@@ -11,11 +11,12 @@ const Navbar:React.FC = () => {
     return (
         <Flex bg='white' height='44px' padding='6px 12px' justify={{ md: "space-between" }}>
             <Flex align="center" width={{ base: "40px", md: "auto" }} mr={{ base: 0, md: 2}}>
-                <Image src='/images/encodice-icon.svg' height='30px' />
+                <Image src='/images/encodice-icon.svg' height='30px' alt=""/>
                 <Image 
                     src='/images/encodice-text.svg'
                     height='46px'
                     display={{ base: "none", md: "unset" }}
+                    alt=""
                 />
             </Flex>
             {user && <Directory />}                

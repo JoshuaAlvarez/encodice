@@ -20,7 +20,7 @@ import { MdOutlineLogin } from "react-icons/md";
 import { auth } from "../../../firebase/clientApp";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { authModalState } from "../../../atoms/authModalAtom";
-import { communityState } from "../../../atoms/communitiesAtom";
+import { topicState } from "../../../atoms/topicsAtom";
 
 type UserMenuProps = {
   user?: User | null;
@@ -31,7 +31,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
 
   const logout = async () => {
     await signOut(auth);
-    // clear community state
+    // clear topic state
   };
 
   return (

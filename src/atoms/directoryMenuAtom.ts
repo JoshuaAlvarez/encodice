@@ -1,3 +1,4 @@
+// Recoil atom that stores the state of DirectoryMenu and its default values
 import {IconType} from "react-icons";
 import {GiBookshelf} from "react-icons/gi";
 import {atom} from "recoil";

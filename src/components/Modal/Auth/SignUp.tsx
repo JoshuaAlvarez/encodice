@@ -7,50 +7,45 @@ import { auth } from '../../../firebase/clientApp';
 import { FIREBASE_ERRORS } from '../../../firebase/errors';
 
 const SignUp: React.FC = () => {
-
-    const setAuthModalState = useSetRecoilState(authModalState);
     const [signUpForm, setSignUpForm] = useState({
-        email: "",
-        password: "",
-        confirmPassword: "",
+        email: '',
+        password: '',
+        confirmPassword: '',
     });
-    const [error, setError] = useState("");
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        userError,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    const [error, setError] = useState('');
+    // noinspection JSUnusedLocalSymbols : user const IS needed in 'FIREBASE_ERRORS[userError?.message...'
+    const [createUserWithEmailAndPassword, user, loading, userError] = useCreateUserWithEmailAndPassword(auth);
+    const setAuthModalState = useSetRecoilState(authModalState);
 
-    //Firebase logic
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (error) setError('');
         if (signUpForm.password !== signUpForm.confirmPassword) {
-            setError("Las contraseñas no coinciden");
+            setError('Las contraseñas no coinciden');
             return;
         }
-        // passwords match
-        createUserWithEmailAndPassword(signUpForm.email, signUpForm.password);
+        createUserWithEmailAndPassword(signUpForm.email, signUpForm.password)
+            .catch(error => {
+                setError(FIREBASE_ERRORS[error.message as keyof typeof FIREBASE_ERRORS]);
+            });
     };
 
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        // update form state
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSignUpForm(prev => ({
             ...prev,
             [event.target.name]: event.target.value,
-        }))
-    }
+        }));
+    };
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
             <Input
                 required
                 name="email"
                 placeholder="Correo electrónico"
                 type="email"
                 mb={2}
-                onChange={onChange}
+                onChange={handleChange}
                 fontSize="10pt"
                 _placeholder={{ color: "gray.500" }}
                 _hover={{
@@ -69,8 +64,8 @@ const SignUp: React.FC = () => {
             <Input
                 required
                 name='password'
-                onChange={onChange}
-                placeholder='password'
+                onChange={handleChange}
+                placeholder='Contraseña'
                 type={'password'}
                 fontSize="10pt"
                 _placeholder={{ color: "gray.500" }}
@@ -83,14 +78,14 @@ const SignUp: React.FC = () => {
                     outline: "none",
                     bg: "white",
                     border: "1px solid",
-                    borderColor: "blue.500",
+                    borderColor: "blue.500"
                 }}
                 bg="gray.50"
             />
             <Input
                 required
                 name='confirmPassword'
-                onChange={onChange}
+                onChange={handleChange}
                 placeholder='Repetir contraseña'
                 type={'password'}
                 fontSize="10pt"
@@ -98,7 +93,7 @@ const SignUp: React.FC = () => {
                 _hover={{
                     bg: "white",
                     border: "1px solid",
-                    borderColor: "blue.500"
+                    borderColor: "blue.500",
                 }}
                 _focus={{
                     outline: "none",

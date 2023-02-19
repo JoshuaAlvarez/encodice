@@ -14,46 +14,46 @@ import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FaLandmark } from "react-icons/fa";
-import { Community, communityState } from "../../atoms/communitiesAtom";
+import { Topic, topicState } from "../../atoms/topicsAtom";
 import { auth, firestore, storage } from "../../firebase/clientApp";
 import useSelectFile from "../../hooks/useSelectFile";
 import { useSetRecoilState } from "recoil";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
-import useCommunityData from "../../hooks/useCommunityData";
+import useTopicData from "../../hooks/useTopicData";
 import CreatePostLink from "./CreatePostLink";
 
 type AboutProps = {
-  communityData: Community;
+  topicData: Topic;
 };
 
-const About: React.FC<AboutProps> = ({ communityData }) => {
-  const { communityStateValue, onJoinOrLeaveCommunity, loading } =
-      useCommunityData();
-  const isJoined = !!communityStateValue.mySnippets.find(
-      (item) => item.communityId === communityData.id
+const About: React.FC<AboutProps> = ({ topicData }) => {
+  const { topicStateValue, onJoinOrLeaveTopic, loading } =
+      useTopicData();
+  const isJoined = !!topicStateValue.mySnippets.find(
+      (item) => item.topicId === topicData.id
   );
   const router = useRouter(), [user] = useAuthState(auth), selectedFileRef = useRef<HTMLInputElement>(null), {
         selectedFile,
         onSelectFile
       } = useSelectFile(), [uploadingImage, setUploadingImage] = useState(false),
-      setCommunityStateValue = useSetRecoilState(communityState), onUpdateImage = async () => {
+      setTopicStateValue = useSetRecoilState(topicState), onUpdateImage = async () => {
         if (!selectedFile) return;
         setUploadingImage(true);
         try {
-          const imageRef = ref(storage, `communities/${communityData.id}/image`);
+          const imageRef = ref(storage, `topics/${topicData.id}/image`);
           await uploadString(imageRef, selectedFile, "data_url");
           const downloadURL = await getDownloadURL(imageRef);
-          await updateDoc(doc(firestore, "communities", communityData.id), {
+          await updateDoc(doc(firestore, "topics", topicData.id), {
             imageURL: downloadURL,
           });
 
-          setCommunityStateValue((prev) => ({
+          setTopicStateValue((prev) => ({
             ...prev,
-            currentCommunity: {
-              ...prev.currentCommunity,
+            currentTopic: {
+              ...prev.currentTopic,
               imageURL: downloadURL,
-            } as Community,
+            } as Topic,
           }));
         } catch (error) {
           console.log("onUpdateImage error", error);
@@ -86,7 +86,7 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
               variant={isJoined ? "outline" : "solid"}
               height="33px"
               isLoading={loading}
-              onClick={() => onJoinOrLeaveCommunity(communityData, isJoined)}
+              onClick={() => onJoinOrLeaveTopic(topicData, isJoined)}
               width="fit-content"
           >
             {isJoined ? "Suscrito" : "Suscríbete a este Tema"}
@@ -95,24 +95,24 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
             <Flex width={"100%"} p={2} fontSize="10pt" fontWeight={700}>
               <Flex direction={"column"} flexGrow={1} mt={2}>
                 <Text>Miembros: </Text>
-                <Text>{communityData.numberOfMembers.toLocaleString()}</Text>
+                <Text>{topicData.numberOfMembers.toLocaleString()}</Text>
               </Flex>
             </Flex>
             <Divider />
             <Flex width="100%" p={1} direction="column">
               <Flex align={"center"} fontWeight={500} fontSize="10pt">
-                {communityData.createdAt && (
+                {topicData.createdAt && (
                     <Text>
                       Creado el{" "}
                       {moment(
-                          new Date(communityData.createdAt.seconds * 1000)
+                          new Date(topicData.createdAt.seconds * 1000)
                       ).format("DD / MM / YYYY")}
                     </Text>
                 )}
               </Flex>
               <CreatePostLink />
             </Flex>
-            {user?.uid === communityData.creatorId && (
+            {user?.uid === topicData.creatorId && (
                 <>
                   <Divider />
                   <Stack spacing={1} fontSize="10pt">
@@ -126,9 +126,9 @@ const About: React.FC<AboutProps> = ({ communityData }) => {
                       >
                         Cambiar imagen
                       </Text>
-                      {communityData.imageURL || selectedFile ? (
+                      {topicData.imageURL || selectedFile ? (
                           <Image
-                              src={selectedFile || communityData.imageURL}
+                              src={selectedFile || topicData.imageURL}
                               borderRadius="full"
                               boxSize={"40px"}
                               alt="Imagen del Tema"

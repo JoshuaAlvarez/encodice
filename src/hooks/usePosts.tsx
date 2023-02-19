@@ -13,7 +13,7 @@ import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { authModalState } from "../atoms/authModalAtom";
-import { communityState } from "../atoms/communitiesAtom";
+import { topicState } from "../atoms/topicsAtom";
 import { Post, postState, PostVote } from "../atoms/postsAtom";
 import { auth, firestore, storage } from "../firebase/clientApp";
 
@@ -21,17 +21,17 @@ const usePosts = () => {
   const [user] = useAuthState(auth);
   const router = useRouter();
   const [postStateValue, setPostStateValue] = useRecoilState(postState);
-  const currentCommunity = useRecoilValue(communityState).currentCommunity;
+  const currentTopic = useRecoilValue(topicState).currentTopic;
   const setAuthModalState = useSetRecoilState(authModalState);
 
   const onVote = async (
     event: React.MouseEvent<SVGElement, MouseEvent>,
     post: Post,
     vote: number,
-    communityId: string
+    topicId: string
   ) => {
     event.stopPropagation();
-    // check for a user => if not, open auth modal
+    // Check for a user => if not, open auth modal
     if (!user?.uid) {
       setAuthModalState({ open: true, view: "login" });
       return;
@@ -51,7 +51,7 @@ const usePosts = () => {
 
       // New vote
       if (!existingVote) {
-        // create a new postVote document
+        // Create a new postVote document
         const postVoteRef = doc(
           collection(firestore, "users", `${user?.uid}/postVotes`)
         );
@@ -59,7 +59,7 @@ const usePosts = () => {
         const newVote: PostVote = {
           id: postVoteRef.id,
           postId: post.id!,
-          communityId,
+          topicId,
           voteValue: vote, // 1 or -1
         };
 
@@ -106,7 +106,7 @@ const usePosts = () => {
             voteValue: vote,
           };
 
-          // updating the existing postVote document
+          // Updating the existing postVote document
           batch.update(postVoteRef, {
             voteValue: vote,
           });
@@ -149,7 +149,7 @@ const usePosts = () => {
       ...prev,
       selectedPost: post,
     }));
-    router.push(`/tema/${post.communityId}/comments/${post.id}`);
+    router.push(`/tema/${post.topicId}/comments/${post.id}`);
   };
 
   const onDeletePost = async (post: Post): Promise<boolean> => {
@@ -160,7 +160,7 @@ const usePosts = () => {
         await deleteObject(imageRef);
       }
 
-      // delete post document from firestore
+      // Delete post document from firestore
       const postDocRef = doc(firestore, "posts", post.id!);
       await deleteDoc(postDocRef);
 
@@ -175,13 +175,13 @@ const usePosts = () => {
     }
   };
 
-  const getCommunityPostsVotes = async (communityId: string) => {
+  const getTopicPostsVotes = async (topicId: string) => {
     const postVotesQuery = query(
       collection(firestore, "users", `${user?.uid}/postVotes`),
-      where("communityId", "==", communityId)
+      where("topicId", "==", topicId)
     );
 
-    const postVoteDocs = await getDocs(postVotesQuery);
+    const postVoteDocs = await getDocs(postVotesQuery);/**/
     const postVotes = postVoteDocs.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -193,9 +193,9 @@ const usePosts = () => {
   };
 
   useEffect(() => {
-    if (!user || !currentCommunity?.id) return;
-    getCommunityPostsVotes(currentCommunity?.id);
-  }, [user, currentCommunity]);
+    if (!user || !currentTopic?.id) return;
+    getTopicPostsVotes(currentTopic?.id);
+  }, [user, currentTopic]);
 
   useEffect(() => {
     if (!user) {
