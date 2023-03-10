@@ -47,21 +47,7 @@ const Header: React.FC<HeaderProps> = ({ topicData }) => {
               <Text fontWeight={850} fontSize="23pt" color={"white"}>
                 {topicData.id}
               </Text>
-              {/*<Text fontWeight={600} fontSize="10pt" color="gray.400">
-                {topicData.id}
-              </Text>*/}
             </Flex>
-            {/*<Button
-              variant={isJoined ? "outline" : "solid"}
-              height="33px"
-              pr={6}
-              pl={6}
-              isLoading={loading}
-              rightIcon={<MdOutlineDoorbell />}
-              onClick={() => onJoinOrLeaveTopic(topicData, isJoined)}
-            >
-              {isJoined ? "Suscrito" : "Suscríbete a este tema"}
-            </Button>*/}
             <Spacer />
           </Flex>
         </Flex>

@@ -1,7 +1,7 @@
 import { Box, Flex, Icon, MenuItem, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import CreateTopicModal from "../../Modal/CreateTopic/CreateTopicModal";
-import { GrAdd } from "react-icons/gr";
+import { CgAddR } from "react-icons/cg";
 import { useRecoilValue } from "recoil";
 import { topicState } from "../../../atoms/topicsAtom";
 import MenuListItem from "./MenuListItem";
@@ -44,7 +44,7 @@ const Topics: React.FC<TopicsProps> = () => {
           onClick={() => setOpen(true)}
         >
           <Flex align="center">
-            <Icon fontSize={20} mr={2} as={GrAdd} />
+            <Icon fontSize={20} mr={2} as={CgAddR} />
             Crear Tema
           </Flex>
         </MenuItem>

@@ -1,8 +1,7 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { TriangleDownIcon } from "@chakra-ui/icons";
 import {
   Menu,
   MenuButton,
-  Button,
   MenuList,
   MenuItem,
   Flex,
@@ -14,13 +13,11 @@ import { signOut, User } from "firebase/auth";
 import React from "react";
 import { FaLandmark } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
-import { IoSparkles } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-import { MdOutlineLogin } from "react-icons/md";
+import { RiLoginCircleLine } from "react-icons/ri";
 import { auth } from "../../../firebase/clientApp";
-import { useResetRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../../atoms/authModalAtom";
-import { topicState } from "../../../atoms/topicsAtom";
 
 type UserMenuProps = {
   user?: User | null;
@@ -66,7 +63,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               <Icon fontSize={24} color="gray.400" mr={1} as={VscAccount} />
             )}
           </Flex>
-          <ChevronDownIcon />
+          <TriangleDownIcon />
         </Flex>
       </MenuButton>
       <MenuList>
@@ -90,7 +87,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               onClick={logout}
             >
               <Flex align={"center"}>
-                <Icon fontSize={20} mr={2} as={MdOutlineLogin} />
+                <Icon fontSize={20} mr={2} as={RiLoginCircleLine} />
                 Cerrar sesión
               </Flex>
             </MenuItem>
@@ -104,7 +101,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               onClick={() => setAuthModalState({ open: true, view: "login" })}
             >
               <Flex align={"center"}>
-                <Icon fontSize={20} mr={2} as={MdOutlineLogin} />
+                <Icon fontSize={20} mr={2} as={RiLoginCircleLine} />
                 Inicia sesión / Registrate
               </Flex>
             </MenuItem>

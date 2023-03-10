@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import moment from "moment";
 import { NextRouter, useRouter } from "next/router";
-import { AiOutlineDelete } from "react-icons/ai";
+import { RiDeleteBin2Line } from "react-icons/ri";
 import { BsChat, BsDot } from "react-icons/bs";
 import { FaLandmark } from "react-icons/fa";
 import { Post, postState } from "../../atoms/postsAtom";
@@ -230,8 +230,8 @@ const PostItem: React.FC<PostItemProps> = ({
                 <Spinner size={"sm"} />
               ) : (
                 <>
-                  <Icon as={AiOutlineDelete} mr={2} />
-                  <Text fontSize={"9pt"}>Delete</Text>
+                  <Icon as={RiDeleteBin2Line} mr={2} />
+                  <Text fontSize={"9pt"}>Eliminar</Text>
                 </>
               )}
             </Flex>

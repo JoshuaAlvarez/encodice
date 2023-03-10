@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { TriangleDownIcon } from "@chakra-ui/icons";
 import {
   Flex,
   Icon,
@@ -54,7 +54,7 @@ const Directory: React.FC = () => {
               </Text>
             </Flex>
           </Flex>
-          <ChevronDownIcon />
+          <TriangleDownIcon />
         </Flex>
       </MenuButton>
       <MenuList>
