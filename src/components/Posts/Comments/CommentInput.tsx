@@ -23,7 +23,7 @@ const CommentInput: React.FC<CommentInputProps> = ({
       {user ? (
         <>
           <Text mb={1}>
-            Comment as{" "}
+            Comentar como{" "}
             <span style={{ color: "#3182CE" }}>
               {user?.email?.split("@")[0]}
             </span>

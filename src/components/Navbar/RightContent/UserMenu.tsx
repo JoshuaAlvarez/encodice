@@ -55,7 +55,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
                     {user?.displayName || user.email?.split("@")[0]}
                   </Text>
                   <Flex>
-                    <Text fontSize="6pt">User Status</Text>
+                    <Text fontSize="6pt">Estatus</Text>
                   </Flex>
                 </Flex>
               </>

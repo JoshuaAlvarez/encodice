@@ -152,9 +152,9 @@ const Suggestions: React.FC = () => {
                       </Link>
                   );
                 })}
-                <Box p="10px 20px">
-                  <Button height="30px" width="100%">
-                    View All
+                <Box display="flex" justifyContent="center" p="10px 20px">
+                  <Button height="30px" width="60%">
+                    Mostar todos
                   </Button>
                 </Box>
               </>

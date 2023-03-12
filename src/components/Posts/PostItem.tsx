@@ -163,7 +163,7 @@ const PostItem: React.FC<PostItemProps> = ({
               </>
             )}
             <Text>
-              Posted by u/{post.creatorDisplayName}{" "}
+              Autor u/{post.creatorDisplayName}{" "}
               {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
             </Text>
           </Stack>
@@ -205,7 +205,7 @@ const PostItem: React.FC<PostItemProps> = ({
             cursor="pointer"
           >
             <Icon as={IoArrowRedoOutline} mr={2} />
-            <Text fontSize={"9pt"}>Share</Text>
+            <Text fontSize={"9pt"}>Compartir</Text>
           </Flex>
           <Flex
             align={"center"}
@@ -215,7 +215,7 @@ const PostItem: React.FC<PostItemProps> = ({
             cursor="pointer"
           >
             <Icon as={IoBookmarkOutline} mr={2} />
-            <Text fontSize={"9pt"}>Save</Text>
+            <Text fontSize={"9pt"}>Guardar</Text>
           </Flex>
           {userIsCreator && (
             <Flex
