@@ -132,9 +132,7 @@ const Home: NextPage = () => {
   return (
     <PageContent>
       <>
-        {topicStateValue.currentTopic && (
-          <CreatePostLink/>
-        )}
+        {topicStateValue.currentTopic && <CreatePostLink />}
         {loading ? (
           <PostLoader />
         ) : (
@@ -155,6 +153,18 @@ const Home: NextPage = () => {
                 homePage
               />
             ))}
+              {/*Chat widget*/}
+            <>
+              <div
+                  id="rasa-chat-widget"
+                  data-websocket-url="http://localhost:5005"
+                  data-root-element-id="storybook-preview-wrapper"
+              ></div>
+              <script
+                  src="https://unpkg.com/@rasahq/rasa-chat"
+                  type="application/javascript"
+              ></script>
+            </>
           </Stack>
         )}
       </>

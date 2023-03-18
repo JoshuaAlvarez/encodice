@@ -2,12 +2,18 @@ import React from 'react';
 import { SearchIcon } from '@chakra-ui/icons';
 import { Flex, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { User } from 'firebase/auth';
+import { useRouter } from "next/router";
 
 type SearchInputProps = {
     user?: User | null;
 };
 
 const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
+    const router = useRouter();
+
+    const handleInputClick = () => {
+        router.push("/Search");
+    };
 
     return (
         <Flex flexGrow={1} maxWidth={user ? "auto" : "600px"} mr={2} align='center'>
@@ -15,7 +21,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
                 <InputLeftElement pointerEvents='none'>
                     <SearchIcon color='gray.400' mb={1} />
                 </InputLeftElement>
-                <Input 
+                <Input
                     placeholder='Buscar...'
                     fontSize='10pt'
                     _placeholder={{ color: 'gray.500' }}
@@ -31,9 +37,11 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
                     }}
                     height='34px'
                     bg='gray.50'
+                    onClick={handleInputClick}
                 />
             </InputGroup>
         </Flex>
     );
 };
+
 export default SearchInput;
