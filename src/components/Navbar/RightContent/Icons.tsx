@@ -3,7 +3,6 @@ import React from "react";
 import { FiBell } from "react-icons/fi";
 
 const Icons: React.FC = () => {
-
   return (
     <Flex>
       <Flex
@@ -20,7 +19,7 @@ const Icons: React.FC = () => {
             cursor="pointer"
             _hover={{ bg: "gray.200" }}
           >
-            <Icon as={FiBell} fontSize={20} />
+            {/* <Icon as={FiBell} fontSize={20} /> */}
             {/* Show notif */}
           </Flex>
         </>

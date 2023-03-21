@@ -42,6 +42,15 @@ const TopicPage: React.FC<TopicPageProps> = ({ topicData }) => {
           <Flex>
             <CreatePostLink />
           </Flex>
+          <div
+            id="rasa-chat-widget"
+            data-websocket-url="http://localhost:5005/socket.io"
+          ></div>
+          <script
+            async
+            src="https://unpkg.com/@rasahq/rasa-chat"
+            type="application/javascript"
+          ></script>
           <Posts topicData={topicData} />
         </>
         <>
@@ -58,19 +67,19 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   // Get topic data and pass it to client
   try {
     const topicDocRef = doc(
-        firestore,
-        "topics",
-        context.query.topicId as string
+      firestore,
+      "topics",
+      context.query.topicId as string
     );
     const topicDoc = await getDoc(topicDocRef);
 
     return {
       props: {
         topicData: topicDoc.exists()
-            ? JSON.parse(
-                safeJsonStringify({ id: topicDoc.id, ...topicDoc.data() })
+          ? JSON.parse(
+              safeJsonStringify({ id: topicDoc.id, ...topicDoc.data() })
             )
-            : "",
+          : "",
       },
     };
   } catch (error) {

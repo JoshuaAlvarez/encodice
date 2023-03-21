@@ -1,25 +1,25 @@
 import React from "react";
-import { SearchIcon } from "@chakra-ui/icons";
+//import { ICON } from "@chakra-ui/icons";
 import { Flex, Button, InputLeftElement } from "@chakra-ui/react";
 import { User } from "firebase/auth";
 import { useRouter } from "next/router";
 
-type SearchInputProps = {
+type LearningButtonProps = {
   user?: User | null;
 };
 
-const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
+const LearningButton: React.FC<LearningButtonProps> = ({ user }) => {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push("/search");
+    router.push("/aprende");
   };
 
   return (
     <Flex flexGrow={1} maxWidth={user ? "auto" : "100px"} mr={2} align="center">
       <Button
         onClick={handleButtonClick}
-        leftIcon={<SearchIcon color="gray.400" />}
+        //        leftIcon={<ICON color="gray.400" />}
         fontSize="10pt"
         height="34px"
         bg="gray.50"
@@ -34,10 +34,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
           borderColor: "blue.500",
         }}
       >
-        Buscar
+        Aprende
       </Button>
     </Flex>
   );
 };
 
-export default SearchInput;
+export default LearningButton;

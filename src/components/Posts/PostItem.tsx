@@ -143,6 +143,7 @@ const PostItem: React.FC<PostItemProps> = ({
                     borderRadius="full"
                     boxSize={10}
                     mr={2}
+                    alt="topic-image"
                   />
                 ) : (
                   <Icon
@@ -197,7 +198,7 @@ const PostItem: React.FC<PostItemProps> = ({
             <Icon as={BsChat} mr={2} />
             <Text fontSize={"9pt"}>{post.numberOfComments}</Text>
           </Flex>
-          <Flex
+          {/* <Flex
             align={"center"}
             p="8px 10px"
             borderRadius={4}
@@ -206,8 +207,8 @@ const PostItem: React.FC<PostItemProps> = ({
           >
             <Icon as={IoArrowRedoOutline} mr={2} />
             <Text fontSize={"9pt"}>Compartir</Text>
-          </Flex>
-          <Flex
+          </Flex> */}
+          {/* <Flex
             align={"center"}
             p="8px 10px"
             borderRadius={4}
@@ -216,7 +217,7 @@ const PostItem: React.FC<PostItemProps> = ({
           >
             <Icon as={IoBookmarkOutline} mr={2} />
             <Text fontSize={"9pt"}>Guardar</Text>
-          </Flex>
+          </Flex> */}
           {userIsCreator && (
             <Flex
               align={"center"}

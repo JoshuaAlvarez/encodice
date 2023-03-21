@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Post, PostVote } from "../atoms/postsAtom";
 import CreatePostLink from "../components/Topic/CreatePostLink";
+import WebsiteInfo from "../components/Topic/WebsiteInfo";
 import Suggestions from "../components/Topic/Suggestions";
 import PageContent from "../components/Layout/PageContent";
 import PostItem from "../components/Posts/PostItem";
@@ -153,22 +154,21 @@ const Home: NextPage = () => {
                 homePage
               />
             ))}
-              {/*Chat widget*/}
-            <>
-              <div
-                  id="rasa-chat-widget"
-                  data-websocket-url="http://localhost:5005"
-                  data-root-element-id="storybook-preview-wrapper"
-              ></div>
-              <script
-                  src="https://unpkg.com/@rasahq/rasa-chat"
-                  type="application/javascript"
-              ></script>
-            </>
+            {/*Chat widget*/}
+            <div
+              id="rasa-chat-widget"
+              data-websocket-url="http://localhost:5005/socket.io"
+            ></div>
+            <script
+              async
+              src="https://unpkg.com/@rasahq/rasa-chat"
+              type="application/javascript"
+            ></script>
           </Stack>
         )}
       </>
       <Stack spacing={5}>
+        <WebsiteInfo />
         <Suggestions />
       </Stack>
     </PageContent>
