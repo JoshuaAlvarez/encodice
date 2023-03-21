@@ -12,7 +12,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push("/searchpage");
+    router.push("./searchpage");
   };
 
   return (
