@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import Search from "../pages/search";
+import Search from "./search";
 
 class SearchPage extends Component {
   componentDidMount() {
