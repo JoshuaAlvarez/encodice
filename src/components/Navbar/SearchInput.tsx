@@ -1,8 +1,8 @@
-import React from "react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { Flex, Button, InputLeftElement } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { User } from "firebase/auth";
 import { useRouter } from "next/router";
+import React from "react";
 
 type SearchInputProps = {
   user?: User | null;
@@ -12,7 +12,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push("/search");
+    router.push("/searchpage");
   };
 
   return (

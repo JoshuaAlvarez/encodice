@@ -1,7 +1,6 @@
 import { Box, VStack } from "@chakra-ui/react";
 import algoliasearch from "algoliasearch/lite";
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import {
   Configure,
   Highlight,
@@ -30,53 +29,38 @@ function Hit(props: { hit: { topicId: string } }) {
   );
 }
 
-class Search extends Component {
-  render() {
-    return (
-      <VStack>
-        <Box p="4">
-          <Box as="h1" fontSize="3xl" fontWeight="bold">
-            Busca publicaciones o respuestas en Encodice
-          </Box>
+function Search() {
+  return (
+    <VStack>
+      <Box p="4">
+        <Box as="h1" fontSize="3xl" fontWeight="bold">
+          Busca publicaciones o respuestas en Encodice
         </Box>
-        <InstantSearch indexName="posts" searchClient={searchClient}>
-          <Configure hitsPerPage={6} />
-          <Box width="500px" mx="auto">
-            <SearchBox
-              translations={{
-                submitTitle: "",
-                resetTitle: "",
-                placeholder: "Busca aquí...",
-              }}
-            />
-          </Box>
-          <Box p="4" maxW="70%">
-            <Hits hitComponent={Hit} />
-            <Pagination
-              showLast={false}
-              translations={{
-                previous: "Anterior",
-                next: "Siguiente",
-              }}
-            />
-          </Box>
-        </InstantSearch>
-      </VStack>
-    );
-  }
+      </Box>
+      <InstantSearch indexName="posts" searchClient={searchClient}>
+        <Configure hitsPerPage={6} />
+        <Box width="500px" mx="auto">
+          <SearchBox
+            translations={{
+              submitTitle: "",
+              resetTitle: "",
+              placeholder: "Busca aquí...",
+            }}
+          />
+        </Box>
+        <Box p="4" maxW="70%">
+          <Hits hitComponent={Hit} />
+          <Pagination
+            showLast={false}
+            translations={{
+              previous: "Anterior",
+              next: "Siguiente",
+            }}
+          />
+        </Box>
+      </InstantSearch>
+    </VStack>
+  );
 }
 
-class SearchPage extends Component {
-  componentDidMount() {
-    const rootElement = document.getElementById("root");
-    if (rootElement) {
-      ReactDOM.hydrate(<Search />, rootElement);
-    }
-  }
-
-  render() {
-    return <Box id="root" />;
-  }
-}
-
-export default SearchPage;
+export default Search;

@@ -40,9 +40,9 @@ const Navbar: React.FC = () => {
       </Flex>
       {user && <Directory />}
       <Flex align="center" justify={{ md: "space-between" }}>
-        <SearchInput user={user} />
-        <ProjectsButton user={user} />
-        <LearningButton user={user} />
+        <SearchInput />
+        <ProjectsButton />
+        <LearningButton />
       </Flex>
       <RightContent user={user} />
     </Flex>
