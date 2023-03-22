@@ -63,12 +63,10 @@ function Search() {
   );
 }
 
-function searchpage() {
+export default function searchpage() {
   return (
     <Box p="6">
       <Search />
     </Box>
   );
 }
-
-export default searchpage;

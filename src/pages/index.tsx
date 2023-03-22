@@ -155,15 +155,14 @@ const Home: NextPage = () => {
               />
             ))}
             {/*Chat widget*/}
-            <div
+            {/* <div
               id="rasa-chat-widget"
-              data-websocket-url="http://localhost:5005/socket.io"
+              data-websocket-url="http://localhost:5005/"
             ></div>
             <script
-              async
               src="https://unpkg.com/@rasahq/rasa-chat"
               type="application/javascript"
-            ></script>
+            ></script> */}
           </Stack>
         )}
       </>
