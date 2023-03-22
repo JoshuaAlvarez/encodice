@@ -29,7 +29,7 @@ function Hit(props: { hit: { topicId: string } }) {
   );
 }
 
-function Search() {
+export default function Search() {
   return (
     <VStack>
       <Box p="4">
@@ -62,5 +62,3 @@ function Search() {
     </VStack>
   );
 }
-
-export default Search;
