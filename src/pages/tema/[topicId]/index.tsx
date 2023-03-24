@@ -42,15 +42,6 @@ const TopicPage: React.FC<TopicPageProps> = ({ topicData }) => {
           <Flex>
             <CreatePostLink />
           </Flex>
-          <div
-            id="rasa-chat-widget"
-            data-websocket-url="http://localhost:5005/socket.io"
-          ></div>
-          <script
-            async
-            src="https://unpkg.com/@rasahq/rasa-chat"
-            type="application/javascript"
-          ></script>
           <Posts topicData={topicData} />
         </>
         <>

@@ -31,11 +31,11 @@ const WebsiteInfo: React.FC = () => {
         fontSize="14px"
       >
         Encodice es un sitio web compuesto por varios subgrupos basados en temas
-        específicos enfocados específicamente en prácticas y tecnologías de
-        ingeniería sostenible que permite a su comunidad de usuarios interactuar
-        a través de publicaciones. El sitio web proporciona una plataforma
-        gratuita para que expertos y estudiantes compartan sus conocimientos,
-        experiencias y preguntas.
+        enfocados específicamente en prácticas y tecnologías de ingeniería
+        sostenible que permite a su comunidad de usuarios interactuar a través
+        de publicaciones. El sitio web proporciona una plataforma gratuita para
+        que expertos y estudiantes compartan sus conocimientos, experiencias y
+        preguntas.
       </Box>
     </Flex>
   );

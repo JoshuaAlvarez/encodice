@@ -1,4 +1,4 @@
-import { Flex, Image } from "@chakra-ui/react";
+import { Flex, Image, Button } from "@chakra-ui/react";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/clientApp";
@@ -17,6 +17,10 @@ const Navbar: React.FC = () => {
   const [user, loading, error] = useAuthState(auth);
   const { onSelectMenuItem } = useDirectory();
 
+  const handleHelpClick = () => {
+    window.location.href = "https://clinquant-profiterole-59cea3.netlify.app";
+  };
+
   return (
     <Flex
       bg="white"
@@ -30,20 +34,21 @@ const Navbar: React.FC = () => {
         mr={{ base: 0, md: 2 }}
         onClick={() => onSelectMenuItem(defaultMenuItem)}
       >
-        <Image src="/images/encodice-icon.svg" height="30px" alt="" />
+        <Image src="/images/encodice-icon.svg" height="34px" alt="" />
         <Image
           src="/images/encodice-text.svg"
-          height="46px"
+          height="50px"
           display={{ base: "none", md: "unset" }}
           alt=""
         />
       </Flex>
-      {user && <Directory />}
       <Flex align="center" justify={{ md: "space-between" }}>
         <SearchInput />
         <ProjectsButton />
         <LearningButton />
+        <Button onClick={handleHelpClick}>Ayuda</Button>
       </Flex>
+      {user && <Directory />}
       <RightContent user={user} />
     </Flex>
   );

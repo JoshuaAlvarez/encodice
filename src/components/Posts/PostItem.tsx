@@ -93,7 +93,7 @@ const PostItem: React.FC<PostItemProps> = ({
       <Flex
         direction={"column"}
         align="center"
-        bg={singlePostPage ? "none" : "gray.100"}
+        bg={singlePostPage ? "none" : "white"}
         p={2}
         width="40px"
         borderRadius={singlePostPage ? "0" : "3px 0px 0px 3px"}
@@ -102,7 +102,7 @@ const PostItem: React.FC<PostItemProps> = ({
           as={
             userVoteValue === 1 ? IoArrowUpCircleSharp : IoArrowUpCircleOutline
           }
-          color={userVoteValue === 1 ? "brand.100" : "gray.400"}
+          color={userVoteValue === 1 ? "green" : "gray.400"}
           fontSize={22}
           onClick={(event) => onVote(event, post, 1, post.topicId)}
           cursor="pointer"
@@ -114,7 +114,7 @@ const PostItem: React.FC<PostItemProps> = ({
               ? IoArrowDownCircleSharp
               : IoArrowDownCircleOutline
           }
-          color={userVoteValue === -1 ? "#4379ff" : "gray.400"}
+          color={userVoteValue === -1 ? "red" : "gray.400"}
           fontSize={22}
           onClick={(event) => onVote(event, post, -1, post.topicId)}
           cursor="pointer"
