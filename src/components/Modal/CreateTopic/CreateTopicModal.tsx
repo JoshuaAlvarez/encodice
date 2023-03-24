@@ -139,6 +139,15 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
                 {error}
               </Text>
             </ModalBody>
+            <ModalBody display="flex" flexDirection="column" padding="10px 0px">
+              <Text fontWeight={600} fontSize={15}>
+                Descripción
+              </Text>
+              <Input position="relative" size="sm" pl="22px" />
+              <Text fontSize="9pt" color="red" pt={1}>
+                {error}
+              </Text>
+            </ModalBody>
           </Box>
 
           <ModalFooter bg="gray.100" borderRadius="0px 0px 10px 10px">
