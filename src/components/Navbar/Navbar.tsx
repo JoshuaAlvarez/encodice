@@ -17,10 +17,6 @@ const Navbar: React.FC = () => {
   const [user, loading, error] = useAuthState(auth);
   const { onSelectMenuItem } = useDirectory();
 
-  const handleHelpClick = () => {
-    window.location.href = "https://clinquant-profiterole-59cea3.netlify.app";
-  };
-
   return (
     <Flex
       bg="white"
@@ -46,7 +42,6 @@ const Navbar: React.FC = () => {
         <SearchInput />
         <ProjectsButton />
         <LearningButton />
-        <Button onClick={handleHelpClick}>Ayuda</Button>
       </Flex>
       {user && <Directory />}
       <RightContent user={user} />
