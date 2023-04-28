@@ -14,7 +14,8 @@ declare global {
 export default function App({ Component, pageProps }: AppProps) {
   const onLoadScript = () => {
     window?.ChatbotWidget?.default({
-      rasaServerUrl: "http://localhost:5005/webhooks/rest/webhook",
+      rasaServerUrl:
+        "https://dc88-34-72-137-47.ngrok-free.app/webhooks/rest/webhook/",
       userId: null,
       initialPayload: "/greet",
       metadata: {},
