@@ -4,6 +4,7 @@ import Script from "next/script";
 import { RecoilRoot } from "recoil";
 import { theme } from "../chakra/theme";
 import Layout from "../components/Layout/Layout";
+import React from "react";
 
 declare global {
   interface Window {
@@ -15,11 +16,11 @@ export default function App({ Component, pageProps }: AppProps) {
   const onLoadScript = () => {
     window?.ChatbotWidget?.default({
       rasaServerUrl:
-        "https://dc88-34-72-137-47.ngrok-free.app/webhooks/rest/webhook/",
+        "https://cea2-34-30-12-145.ngrok-free.app/webhooks/rest/webhook",
       userId: null,
       initialPayload: "/greet",
       metadata: {},
-      botAvatar: "/img/botAvatar.jpg",
+      botAvatar: "/img/ecobot_avatar.png",
       widgetColor: "#192f60",
       textColor: "white",
       userMsgBackgroundColor: "#192f60",
@@ -37,15 +38,15 @@ export default function App({ Component, pageProps }: AppProps) {
       userMsgColor: "#4c1d95",
       embedded: false,
       buttonsCss: {
-        color: "#5F8D4E",
-        backgroundColor: "#5F8D4E",
-        borderColor: "#5F8D4E",
+        color: "white",
+        backgroundColor: "#192f60",
+        borderColor: "#192f60",
         borderWidth: "0px",
         borderRadius: "999px",
-        hoverBackgroundColor: "white",
-        hoverColor: "#4b5563",
-        hoverborderWidth: "1px",
-        enableHover: false,
+        hoverBackgroundColor: "#112a5f",
+        hoverColor: "#192f60",
+        hoverborderWidth: "0px",
+        enableHover: true,
       },
     });
   };
@@ -55,11 +56,11 @@ export default function App({ Component, pageProps }: AppProps) {
       <ChakraProvider theme={theme}>
         <Layout>
           <Component {...pageProps} />
+          <div id="chatbot-container" className="chatbot-container">
+            <Script id="bot_ui" src="/index.js" onLoad={onLoadScript} />
+          </div>
         </Layout>
       </ChakraProvider>
-      <div id="chatbot-container" className="chatbot-container">
-        <Script id="bot_ui" src="/index.js" onLoad={onLoadScript} />
-      </div>
     </RecoilRoot>
   );
 }

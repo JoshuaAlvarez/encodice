@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, MenuItem, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, MenuItem, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import CreateTopicModal from "../../Modal/CreateTopic/CreateTopicModal";
 import { CgAddR } from "react-icons/cg";
@@ -26,7 +26,7 @@ const Topics: React.FC<TopicsProps> = () => {
             <MenuListItem
               key={snippet.topicId}
               icon={FaLandmark}
-              displayText={`tema/${snippet.topicId}`}
+              displayText={`${snippet.topicId}`}
               link={`/tema/${snippet.topicId}`}
               iconColor="brand.500"
               imageURL={snippet.imageURL}
@@ -37,22 +37,19 @@ const Topics: React.FC<TopicsProps> = () => {
         <Text pl={3} mb={1} fontSize="7pt" fontWeight={500} color="gray.500">
           Temas
         </Text>
-        <MenuItem
+        <Button
           width="100%"
           fontSize="10pt"
-          _hover={{ bg: "gray.100" }}
           onClick={() => setOpen(true)}
+          leftIcon={<Icon as={CgAddR} fontSize={20} />}
         >
-          <Flex align="center">
-            <Icon fontSize={20} mr={2} as={CgAddR} />
-            Crear Tema
-          </Flex>
-        </MenuItem>
+          Crear Tema
+        </Button>
         {mySnippets.map((snippet) => (
           <MenuListItem
             key={snippet.topicId}
             icon={FaLandmark}
-            displayText={`tema/${snippet.topicId}`}
+            displayText={`${snippet.topicId}`}
             link={`/tema/${snippet.topicId}`}
             iconColor="blue.500"
             imageURL={snippet.imageURL}

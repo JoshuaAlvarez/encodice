@@ -1,4 +1,4 @@
-import { Stack } from "@chakra-ui/react";
+import { Flex, Stack } from "@chakra-ui/react";
 import {
   collection,
   doc,
@@ -13,14 +13,13 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Post, PostVote } from "../atoms/postsAtom";
 import CreatePostLink from "../components/Topic/CreatePostLink";
-import WebsiteInfo from "../components/Topic/WebsiteInfo";
-import Suggestions from "../components/Topic/Suggestions";
 import PageContent from "../components/Layout/PageContent";
 import PostItem from "../components/Posts/PostItem";
 import PostLoader from "../components/Posts/PostLoader";
 import { auth, firestore } from "../firebase/clientApp";
 import useTopicData from "../hooks/useTopicData";
 import usePosts from "../hooks/usePosts";
+import SidebarMenu from "../components/Topic/SidebarMenu";
 
 const Home: NextPage = () => {
   const [user, loadingUser] = useAuthState(auth);
@@ -35,7 +34,6 @@ const Home: NextPage = () => {
   const { topicStateValue } = useTopicData();
 
   const createUserMainFeed = async () => {
-    // traer posts de temas del usuario
     setLoading(true);
     try {
       if (topicStateValue.mySnippets.length) {
@@ -132,35 +130,39 @@ const Home: NextPage = () => {
 
   return (
     <PageContent>
-      <>
-        {topicStateValue.currentTopic && <CreatePostLink />}
-        {loading ? (
-          <PostLoader />
-        ) : (
-          <Stack>
-            {postStateValue.posts.map((post) => (
-              <PostItem
-                key={post.id}
-                post={post}
-                onSelectPost={onSelectPost}
-                onDeletePost={onDeletePost}
-                onVote={onVote}
-                userVoteValue={
-                  postStateValue.postVotes.find(
-                    (item) => item.postId === post.id
-                  )?.voteValue
-                }
-                userIsCreator={user?.uid === post.creatorId}
-                homePage
-              />
-            ))}
-          </Stack>
-        )}
-      </>
-      <Stack spacing={5}>
-        <WebsiteInfo />
-        <Suggestions />
-      </Stack>
+      <Flex
+        direction="column"
+        width={{ base: "100%", md: "90%" }}
+        ml={{ base: 0, md: 90 }}
+        flexGrow={1}
+      >
+        <>
+          {topicStateValue.currentTopic && <CreatePostLink />}
+          {loading ? (
+            <PostLoader />
+          ) : (
+            <Stack>
+              {postStateValue.posts.map((post) => (
+                <PostItem
+                  key={post.id}
+                  post={post}
+                  onSelectPost={onSelectPost}
+                  onDeletePost={onDeletePost}
+                  onVote={onVote}
+                  userVoteValue={
+                    postStateValue.postVotes.find(
+                      (item) => item.postId === post.id
+                    )?.voteValue
+                  }
+                  userIsCreator={user?.uid === post.creatorId}
+                  homePage
+                />
+              ))}
+            </Stack>
+          )}
+        </>
+      </Flex>
+      <SidebarMenu />
     </PageContent>
   );
 };

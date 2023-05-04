@@ -10,8 +10,9 @@ import {
 } from "../atoms/directoryMenuAtom";
 
 const useDirectory = () => {
-  const [directoryState, setDirectoryState] =
-    useRecoilState(directoryMenuStateAtom);
+  const [directoryState, setDirectoryState] = useRecoilState(
+    directoryMenuStateAtom
+  );
   const router = useRouter();
   const topicStateValue = useRecoilValue(topicState);
 
@@ -40,7 +41,7 @@ const useDirectory = () => {
       setDirectoryState((prev) => ({
         ...prev,
         selectedMenuItem: {
-          displayText: `tema/${currentTopic.id}`,
+          displayText: `${currentTopic.id}`,
           link: `/tema/${currentTopic.id}`,
           imageURL: currentTopic.imageURL,
           icon: FaLandmark,

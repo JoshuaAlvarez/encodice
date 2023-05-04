@@ -58,19 +58,6 @@ const Suggestions: React.FC = () => {
       border="1px solid"
       borderColor={"gray.300"}
     >
-      <Flex
-        align={"flex-end"}
-        color="white"
-        p="6px 10px"
-        height={"70px"}
-        borderRadius="4px 4px 0px 0px"
-        fontWeight={700}
-        bgImage="url(/images/pagTema.png)"
-        backgroundSize="cover"
-        bgGradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url('images/pagTema.png')"
-      >
-        Temas recomendados
-      </Flex>
       <Flex direction={"column"}>
         {loading ? (
           <Stack mt={2} p={3}>
@@ -98,7 +85,7 @@ const Suggestions: React.FC = () => {
                   <Flex
                     position={"relative"}
                     align={"center"}
-                    fontSize="10pt"
+                    fontSize="12pt"
                     borderBottom="1px solid"
                     borderColor="gray.200"
                     p="10px 12px"
@@ -138,7 +125,7 @@ const Suggestions: React.FC = () => {
                     <Box position="absolute" right="10px">
                       <Button
                         height="22px"
-                        fontSize="8pt"
+                        fontSize="12pt"
                         variant={isJoined ? "outline" : "solid"}
                         onClick={(event) => {
                           event.stopPropagation();
@@ -152,11 +139,6 @@ const Suggestions: React.FC = () => {
                 </Link>
               );
             })}
-            {/* <Box display="flex" justifyContent="center" p="10px 20px">
-              <Button height="30px" width="60%">
-                Mostar todos
-              </Button>
-            </Box> */}
           </>
         )}
       </Flex>

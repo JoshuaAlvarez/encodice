@@ -12,6 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import moment from "moment";
+import "moment/locale/es";
 import { NextRouter, useRouter } from "next/router";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { BsChat, BsDot } from "react-icons/bs";
@@ -85,7 +86,7 @@ const PostItem: React.FC<PostItemProps> = ({
       border={"1px solid"}
       bg="white"
       borderColor={singlePostPage ? "white" : "gray.300"}
-      borderRadius={singlePostPage ? "4px 4px 0px 0px" : "4px"}
+      borderRadius={singlePostPage ? "0px 0px 0px 0px" : "0px"}
       _hover={{ borderColor: singlePostPage ? "none" : "gray.500" }}
       cursor={singlePostPage ? "unset" : "pointer"}
       onClick={() => onSelectPost && onSelectPost(post)}
@@ -96,7 +97,7 @@ const PostItem: React.FC<PostItemProps> = ({
         bg={singlePostPage ? "none" : "white"}
         p={2}
         width="40px"
-        borderRadius={singlePostPage ? "0" : "3px 0px 0px 3px"}
+        borderRadius={singlePostPage ? "0" : "0px 0px 0px 0px"}
       >
         <Icon
           as={
@@ -158,13 +159,14 @@ const PostItem: React.FC<PostItemProps> = ({
                     fontWeight={700}
                     _hover={{ textDecoration: "underline" }}
                     onClick={(event) => event.stopPropagation()}
-                  >{`tema/${post.topicId}`}</Text>
+                  >{`${post.topicId}`}</Text>
                 </Link>
                 <Icon as={BsDot} color="gray.500" fontSize={8} />
               </>
             )}
+            {moment.locale("es")}
             <Text>
-              Autor u/{post.creatorDisplayName}{" "}
+              Creado por {post.creatorDisplayName}{" "}
               {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
             </Text>
           </Stack>
@@ -187,42 +189,22 @@ const PostItem: React.FC<PostItemProps> = ({
             </Flex>
           )}
         </Stack>
-        <Flex ml={1} mb={0.5} color="gray.500" /*fontWeight={600}*/>
+        <Flex ml={1} mb={0.5} color="gray.500">
           <Flex
             align={"center"}
             p="8px 10px"
-            borderRadius={4}
+            borderRadius={1}
             _hover={{ bg: "gray.200" }}
             cursor="pointer"
           >
             <Icon as={BsChat} mr={2} />
             <Text fontSize={"9pt"}>{post.numberOfComments}</Text>
           </Flex>
-          {/* <Flex
-            align={"center"}
-            p="8px 10px"
-            borderRadius={4}
-            _hover={{ bg: "gray.200" }}
-            cursor="pointer"
-          >
-            <Icon as={IoArrowRedoOutline} mr={2} />
-            <Text fontSize={"9pt"}>Compartir</Text>
-          </Flex> */}
-          {/* <Flex
-            align={"center"}
-            p="8px 10px"
-            borderRadius={4}
-            _hover={{ bg: "gray.200" }}
-            cursor="pointer"
-          >
-            <Icon as={IoBookmarkOutline} mr={2} />
-            <Text fontSize={"9pt"}>Guardar</Text>
-          </Flex> */}
           {userIsCreator && (
             <Flex
               align={"center"}
               p="8px 10px"
-              borderRadius={4}
+              borderRadius={1}
               _hover={{ bg: "gray.200" }}
               cursor="pointer"
               onClick={handleDelete}

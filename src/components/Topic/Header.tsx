@@ -1,23 +1,25 @@
-import { Box, Flex, Icon, Image, Text, Spacer } from "@chakra-ui/react";
+import { Box, Flex, Icon, Image, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
 import { FaLandmark } from "react-icons/fa";
 import { Topic } from "../../atoms/topicsAtom";
 import useTopicData from "../../hooks/useTopicData";
+// import CreatePostLink from "./CreatePostLink";
 
 type HeaderProps = {
   topicData: Topic;
 };
 
 const Header: React.FC<HeaderProps> = ({ topicData }) => {
-  const { topicStateValue} =
-    useTopicData();
-  !!topicStateValue.mySnippets.find(
-      (item) => item.topicId === topicData.id
+  const { topicStateValue, onJoinOrLeaveTopic, loading } = useTopicData();
+  const isJoined = !!topicStateValue.mySnippets.find(
+    (item) => item.topicId === topicData.id
   );
+
+  !!topicStateValue.mySnippets.find((item) => item.topicId === topicData.id);
 
   return (
     <Flex direction="column" width="100%" height="100px">
-      <Box height="5%" bg="white" /> {/* Later give Navbar shadow bot */}
+      <Box height="5%" bg="white" />
       <Flex justify="center" bg="#192f60" flexGrow={1}>
         <Flex width="95%" maxWidth="1100px">
           {topicStateValue.currentTopic?.imageURL ? (
@@ -49,6 +51,20 @@ const Header: React.FC<HeaderProps> = ({ topicData }) => {
               </Text>
             </Flex>
             <Spacer />
+            {/* If user is Mobile */}
+            {/* <Flex>
+              <CreatePostLink />
+              <Button
+                mt={5}
+                variant={isJoined ? "outline" : "solid"}
+                height="33px"
+                isLoading={loading}
+                onClick={() => onJoinOrLeaveTopic(topicData, isJoined)}
+                width="fit-content"
+              >
+                {isJoined ? "Suscrito" : "Suscríbete a este Tema"}
+              </Button>
+            </Flex> */}
           </Flex>
         </Flex>
       </Flex>

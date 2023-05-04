@@ -9,7 +9,8 @@ import useDirectory from "../../hooks/useDirectory";
 
 type CreatePostLinkProps = {};
 
-const CreatePostLink: React.FC<CreatePostLinkProps> = () => { // Rename to CreatePostButton
+const CreatePostLink: React.FC<CreatePostLinkProps> = () => {
+  // Rename to CreatePostButton
   const router = useRouter();
   const [user] = useAuthState(auth);
   const setAuthModalState = useSetRecoilState(authModalState);
@@ -33,10 +34,10 @@ const CreatePostLink: React.FC<CreatePostLinkProps> = () => { // Rename to Creat
   };
 
   return (
-    <Flex align="right" p={2} mb={4} >
-        <Button mt={3} height="30px" onClick={onClick}>
-          Crear una publicación
-        </Button>
+    <Flex align="right">
+      <Button height="30px" onClick={onClick}>
+        Crear una publicación
+      </Button>
     </Flex>
   );
 };

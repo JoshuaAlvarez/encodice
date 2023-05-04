@@ -39,9 +39,6 @@ const TopicPage: React.FC<TopicPageProps> = ({ topicData }) => {
       <Header topicData={topicData} />
       <PageContent>
         <>
-          <Flex>
-            <CreatePostLink />
-          </Flex>
           <Posts topicData={topicData} />
         </>
         <>

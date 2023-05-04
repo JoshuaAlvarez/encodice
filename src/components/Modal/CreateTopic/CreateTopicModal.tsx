@@ -30,18 +30,25 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
 }) => {
   const [user] = useAuthState(auth);
   const [topicName, setTopicName] = useState("");
-  const [charsRemaining, setCharsRemaining] = useState(21);
+  const [topicDescription, setTopicDescription] = useState(""); // This is used to change the topic description
+  const [charsRemaining, setCharsRemaining] = useState(30);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { toggleMenuOpen } = useDirectory();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.value.length > 21) return;
+    if (event.target.value.length > 30) return;
 
     setTopicName(event.target.value);
     // recalculate how many chars left
-    setCharsRemaining(21 - event.target.value.length);
+    setCharsRemaining(30 - event.target.value.length);
+  };
+  // Function "handleTopicDescription" to set the desciption of the topic
+  const handleChangeDescription = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTopicDescription(event.target.value);
   };
 
   const handleCreateTopic = async () => {
@@ -50,7 +57,7 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
     const format = /[ `!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/;
     if (format.test(topicName) || topicName.length < 3) {
       setError(
-        "Los nombres de los temas deben ser de 3 a 21 caracteres y solo pueden contener letras, números y guiones bajos."
+        "Los nombres de los temas deben ser de 3 a 30 caracteres y solo pueden contener letras, números y guiones bajos."
       );
       return;
     }
@@ -78,6 +85,7 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
           creatorId: user?.uid,
           createdAt: serverTimestamp(),
           numberOfMembers: 1,
+          description: topicDescription, // The value entered in the input by the user should then be set in the document
         });
 
         // Create topicSnippets on user
@@ -129,12 +137,14 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
                 pl="22px"
                 onChange={handleChange}
               />
+
               <Text
                 fontSize="9pt"
                 color={charsRemaining === 0 ? "red" : "gray.500"}
               >
                 {charsRemaining} Caracteres restantes
               </Text>
+
               <Text fontSize="9pt" color="red" pt={1}>
                 {error}
               </Text>
@@ -143,7 +153,16 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
               <Text fontWeight={600} fontSize={15}>
                 Descripción
               </Text>
-              <Input position="relative" size="sm" pl="22px" />
+
+              {/* Call for a onChange={} to set the topic desciption */}
+              <Input
+                position="relative"
+                size="sm"
+                pl="22px"
+                value={topicDescription}
+                onChange={handleChangeDescription}
+              />
+
               <Text fontSize="9pt" color="red" pt={1}>
                 {error}
               </Text>

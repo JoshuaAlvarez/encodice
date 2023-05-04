@@ -6,7 +6,7 @@ export interface Topic {
     id: string;
     creatorId: string;
     numberOfMembers: number;
-    createdAt?: Timestamp; // Useful to ensure a timestamp is always available for when the topic was created
+    createdAt?: Timestamp;
     imageURL?: string;
     description?: string;   // Implement in functions
 }
